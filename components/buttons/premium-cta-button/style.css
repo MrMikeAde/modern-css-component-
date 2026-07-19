@@ -1,0 +1,63 @@
+:root {
+  --btn-prem-start: #d4af37;
+  --btn-prem-end: #aa7c11;
+  --btn-prem-text: #ffffff;
+  --btn-prem-radius: 8px;
+}
+
+.btn-premium {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--btn-prem-text);
+  background-image: linear-gradient(135deg, var(--btn-prem-start), var(--btn-prem-end));
+  border: none;
+  border-radius: var(--btn-prem-radius);
+  box-shadow: 0 4px 15px rgba(170, 124, 17, 0.4);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+}
+
+.btn-premium:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(170, 124, 17, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-premium:hover:not(:disabled)::before {
+  left: 150%;
+  transition: left 0.8s ease-in-out;
+}
+
+.btn-premium:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(170, 124, 17, 0.3);
+}
+
+.btn-premium:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+.btn-premium:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}

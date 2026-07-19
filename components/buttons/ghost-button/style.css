@@ -1,0 +1,42 @@
+:root {
+  --btn-ghost-text: #64748b;
+  --btn-ghost-text-hover: #0f172a;
+  --btn-ghost-bg-hover: rgba(15, 23, 42, 0.05);
+  --btn-ghost-radius: 8px;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--btn-ghost-text);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--btn-ghost-radius);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  color: var(--btn-ghost-text-hover);
+  background-color: var(--btn-ghost-bg-hover);
+}
+
+.btn-ghost:active:not(:disabled) {
+  background-color: rgba(15, 23, 42, 0.1);
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid #64748b;
+  outline-offset: 2px;
+}
+
+.btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

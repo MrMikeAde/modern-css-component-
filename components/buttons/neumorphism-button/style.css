@@ -1,0 +1,53 @@
+:root {
+  --btn-neu-bg: #e0e8f6;
+  --btn-neu-text: #4a5568;
+  --btn-neu-radius: 12px;
+}
+
+.neumorphic-bg-wrapper {
+  display: inline-block;
+  padding: 1.5rem;
+  background-color: #e0e8f6;
+  border-radius: 12px;
+}
+
+.btn-neumorphic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-neu-text);
+  background-color: var(--btn-neu-bg);
+  border: none;
+  border-radius: var(--btn-neu-radius);
+  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
+              -6px -6px 12px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-neumorphic:hover:not(:disabled) {
+  box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.5),
+              -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+
+.btn-neumorphic:active:not(:disabled) {
+  box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.5),
+              inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  transform: translateY(1px);
+}
+
+.btn-neumorphic:focus-visible {
+  outline: 2px dashed #4a5568;
+  outline-offset: 4px;
+}
+
+.btn-neumorphic:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}

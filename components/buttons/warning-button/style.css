@@ -1,0 +1,49 @@
+:root {
+  --btn-warning-bg: #f59e0b;
+  --btn-warning-bg-hover: #d97706;
+  --btn-warning-bg-active: #b45309;
+  --btn-warning-text: #ffffff;
+}
+
+.btn-warning {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-warning-text);
+  background-color: var(--btn-warning-bg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.btn-warning svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--btn-warning-bg-hover);
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+}
+
+.btn-warning:active:not(:disabled) {
+  background-color: var(--btn-warning-bg-active);
+  transform: scale(0.97);
+}
+
+.btn-warning:focus-visible {
+  outline: 2px solid #b45309;
+  outline-offset: 2px;
+}
+
+.btn-warning:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

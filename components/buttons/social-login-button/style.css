@@ -1,0 +1,47 @@
+:root {
+  --btn-social-bg: #24292f;
+  --btn-social-bg-hover: #1b1f23;
+  --btn-social-text: #ffffff;
+}
+
+.btn-social-github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-social-text);
+  background-color: var(--btn-social-bg);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-social-github svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-social-github:hover:not(:disabled) {
+  background-color: var(--btn-social-bg-hover);
+  box-shadow: 0 4px 12px rgba(36, 41, 47, 0.2);
+}
+
+.btn-social-github:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-social-github:focus-visible {
+  outline: 2px solid #24292f;
+  outline-offset: 2px;
+}
+
+.btn-social-github:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

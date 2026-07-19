@@ -1,0 +1,56 @@
+:root {
+  --btn-glass-bg: rgba(255, 255, 255, 0.08);
+  --btn-glass-bg-hover: rgba(255, 255, 255, 0.16);
+  --btn-glass-border: rgba(255, 255, 255, 0.15);
+  --btn-glass-border-hover: rgba(255, 255, 255, 0.3);
+  --btn-glass-text: #ffffff;
+  --btn-glass-radius: 8px;
+}
+
+.glass-bg-wrapper {
+  display: inline-block;
+  padding: 1.5rem;
+  background-image: linear-gradient(135deg, #1e1b4b, #311042);
+  border-radius: 12px;
+}
+
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--btn-glass-text);
+  background-color: var(--btn-glass-bg);
+  border: 1px solid var(--btn-glass-border);
+  border-radius: var(--btn-glass-radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.btn-glass:hover:not(:disabled) {
+  background-color: var(--btn-glass-bg-hover);
+  border-color: var(--btn-glass-border-hover);
+  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.05);
+}
+
+.btn-glass:active:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(0.97);
+}
+
+.btn-glass:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.btn-glass:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

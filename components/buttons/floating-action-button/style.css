@@ -1,0 +1,57 @@
+:root {
+  --btn-fab-size: 56px;
+  --btn-fab-bg: #4f46e5;
+  --btn-fab-bg-hover: #4338ca;
+  --btn-fab-text: #ffffff;
+}
+
+.fab-position-context {
+  display: inline-block;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 12px;
+}
+
+.btn-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--btn-fab-size);
+  height: var(--btn-fab-size);
+  color: var(--btn-fab-text);
+  background-color: var(--btn-fab-bg);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-fab svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.25s ease;
+}
+
+.btn-fab:hover:not(:disabled) {
+  background-color: var(--btn-fab-bg-hover);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+  transform: translateY(-3px) rotate(90deg);
+}
+
+.btn-fab:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.btn-fab:focus-visible {
+  outline: 2px solid #4338ca;
+  outline-offset: 3px;
+}
+
+.btn-fab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}

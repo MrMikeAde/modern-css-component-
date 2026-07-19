@@ -1,0 +1,60 @@
+:root {
+  --btn-anim-bg: #111;
+  --btn-anim-radius: 10px;
+}
+
+.btn-animated-border {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px; /* Thickness of border */
+  background: linear-gradient(90deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+  background-size: 300% 100%;
+  border: none;
+  border-radius: var(--btn-anim-radius);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  animation: border-flow 4s linear infinite;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-animated-border span {
+  display: block;
+  padding: 0.75rem 1.75rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--btn-anim-bg);
+  border-radius: calc(var(--btn-anim-radius) - 2px);
+  transition: background-color 0.2s ease-in-out;
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.btn-animated-border:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn-animated-border:hover:not(:disabled) span {
+  background-color: #1a1a1a;
+}
+
+.btn-animated-border:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-animated-border:focus-visible {
+  outline: 2px solid #00f0ff;
+  outline-offset: 4px;
+}
+
+.btn-animated-border:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -37,48 +37,71 @@ This project exists to:
 
 ---
 
-## 📂 Repository Structure
+## 📂 Repository Structure & Components Status
 
-The codebase is cleanly organized to allow frictionless navigation:
+The codebase is cleanly organized to allow frictionless navigation. Explore our status indicators below:
+
+- 🟢 **Completed**: Production-ready, fully styled and documented component directories.
+- 🟡 **In Progress**: Directories and structure configured; layout guidelines active.
 
 ```text
 modern-css-components/
 ├── .github/              # Community templates and configurations
 ├── assets/               # Project-wide images, logos, and global graphics
 ├── components/           # The heart of the library: 20 distinct categories of UI components
-│   ├── accordions/       # Accordions and collapsible panels (e.g., using <details>)
-│   ├── alerts/           # Notification banners, toast layouts, and inline alerts
-│   ├── avatars/          # User profile chips, badge overlays, and status indicators
-│   ├── badges/           # Pill tags, count indicators, and micro-labels
-│   ├── breadcrumbs/      # Hierarchical page navigation trails
-│   ├── buttons/          # Standard, outline, interactive state, and group buttons
-│   ├── cards/            # Content-focused cards using Grid and Container Queries
-│   ├── footers/          # Standard and complex site-wide footer layouts
-│   ├── forms/            # Accessible inputs, validation states, checkboxes, and radio buttons
-│   ├── heroes/           # Engaging intro sections, header headers, and landing banners
-│   ├── loaders/          # Infinite CSS animations, spinners, and skeleton screens
-│   ├── modals/           # Accessible pop-ups utilizing the native HTML <dialog> element
-│   ├── navigation/       # Responsive headers, dropdown menus, and sidebar panels
-│   ├── pagination/       # Next/Prev buttons and numbered list navigators
-│   ├── pricing/          # Premium comparison plans and billing toggle cards
-│   ├── progress/         # Visual task tracking bars and circular metrics
-│   ├── tables/           # Fluid, responsive, and sortable-ready data grids
-│   ├── tabs/             # Tabbed navigation panels
-│   ├── tooltips/         # Contextual info triggers and popovers
-│   └── utilities/        # Modern utility classes (screen-readers, layout wrappers, etc.)
-├── docs/                 # Guides, conventions, and design specs
-│   ├── COMPONENT_TEMPLATE.md  # Standardized blueprint for implementing components
-│   ├── accessibility.md  # Screen reader, focus, and ARIA rules
-│   ├── browser-support.md# Native compatibility guidelines
-│   ├── coding-standards.md# Writing rules (naming, CSS structure, logical properties)
-│   └── getting-started.md# Overview on using, copy-pasting, and organizing
-├── examples/             # Full page templates and implementation examples
-├── CHANGELOG.md          # History of versions and updates
-├── CODE_OF_CONDUCT.md    # Contributor rules and guidelines
-├── CONTRIBUTING.md       # Step-by-step contribution guidelines
-├── LICENSE               # MIT license detailing usage rights
-└── ROADMAP.md            # Vision of future phases and development milestones
+│   ├── accordions/ 🟡    # Accordions and collapsible panels (e.g., using <details>)
+│   ├── alerts/ 🟡        # Notification banners, toast layouts, and inline alerts
+│   ├── avatars/ 🟡       # User profile chips, badge overlays, and status indicators
+│   ├── badges/ 🟡        # Pill tags, count indicators, and micro-labels
+│   ├── breadcrumbs/ 🟡    # Hierarchical page navigation trails
+│   ├── buttons/ 🟢       # [COMPLETED] 25 unique, production-ready custom button elements!
+│   ├── cards/ 🟡         # Content-focused cards using Grid and Container Queries
+│   ├── footers/ 🟡       # Standard and complex site-wide footer layouts
+│   ├── forms/ 🟡         # Accessible inputs, validation states, checkboxes, and radio buttons
+│   ├── heroes/ 🟡        # Engaging intro sections, header headers, and landing banners
+│   ├── loaders/ 🟡       # Infinite CSS animations, spinners, and skeleton screens
+│   ├── modals/ 🟡        # Accessible pop-ups utilizing the native HTML <dialog> element
+│   ├── navigation/ 🟡    # Responsive headers, dropdown menus, and sidebar panels
+│   ├── pagination/ 🟡    # Next/Prev buttons and numbered list navigators
+│   ├── pricing/ 🟡       # Premium comparison plans and billing toggle cards
+│   ├── progress/ 🟡      # Visual task tracking bars and circular metrics
+│   ├── tables/ 🟡        # Fluid, responsive, and sortable-ready data grids
+│   ├── tabs/ 🟡          # Tabbed navigation panels
+│   ├── tooltips/ 🟡      # Contextual info triggers and popovers
+│   └── utilities/ 🟡     # Modern utility classes (screen-readers, layout wrappers, etc.)
 ```
+
+---
+
+## 🟢 Buttons Category Directory (`components/buttons/`)
+
+Explore our newly completed collection of 25 premium button variants, designed to fit into any modern UI or SaaS application:
+
+1. [Primary Button](./components/buttons/primary-button) - Elegant Indigo primary brand trigger.
+2. [Secondary Button](./components/buttons/secondary-button) - Neutral Slate low-emphasis support action.
+3. [Outline Button](./components/buttons/outline-button) - Bordered minimalist element with a solid hover sweep.
+4. [Ghost Button](./components/buttons/ghost-button) - Transparent text button for low prominence.
+5. [Gradient Button](./components/buttons/gradient-button) - Sunset gradient calling element with animated backgrounds.
+6. [Glassmorphism Button](./components/buttons/glassmorphism-button) - Opaque frosted-glass effect suitable for deep backgrounds.
+7. [Neumorphism Button](./components/buttons/neumorphism-button) - Tactile soft-shadow button with convex-to-concave transitions.
+8. [Icon Button](./components/buttons/icon-button) - Circular trigger enclosing standard inline SVG elements.
+9. [Rounded Pill Button](./components/buttons/rounded-pill-button) - Rounded modern pill badge CTA trigger.
+10. [Animated Border Button](./components/buttons/animated-border-button) - Cyberpunk dark element with a flowing gradient outer border.
+11. [Shine Hover Button](./components/buttons/shine-hover-button) - Diagonal glass-sweep sheen trigger mapping on hover.
+12. [Ripple Style Button](./components/buttons/ripple-style-button) - Material design expand wave that swells outwards on clicks.
+13. [Loading Button](./components/buttons/loading-button) - Disabled process button displaying a rotating circular spinner.
+14. [Success Button](./components/buttons/success-button) - Confirmatory Emerald green alert interaction trigger.
+15. [Danger Button](./components/buttons/danger-button) - Cautionary destructive Red trigger representing irreversible actions.
+16. [Warning Button](./components/buttons/warning-button) - Amber warning action trigger for non-destructive cautions.
+17. [Floating Action Button (FAB)](./components/buttons/floating-action-button) - Elevated circular element designed for float screen layouts.
+18. [Social Login Button](./components/buttons/social-login-button) - Official GitHub auth brand component.
+19. [3D Press Button](./components/buttons/3d-press-button) - Tactile isometric button shifting 6px down on clicks.
+20. [Minimal Button](./components/buttons/minimal-button) - Scandinavian boutique editorial serif action trigger.
+21. [Underline Hover Button](./components/buttons/underline-hover-button) - Low-emphasis link that grows an underline outward from center.
+22. [Split Color Button](./components/buttons/split-color-button) - Dual-tone layout sweeping colors left-to-right on hover.
+23. [Dark Mode Button](./components/buttons/dark-mode-button) - Dark cyber-tech button emitting glowing neon cyan shadows.
+24. [Soft UI Button](./components/buttons/soft-ui-button) - Soft-lit elegant double shadow reporting button.
+25. [Premium CTA Button](./components/buttons/premium-cta-button) - Luxe gold-brass gradient CTA with integrated shimmer sweeps.
 
 ---
 

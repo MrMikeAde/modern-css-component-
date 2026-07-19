@@ -1,0 +1,58 @@
+:root {
+  --btn-ripple-bg: #0284c7;
+  --btn-ripple-text: #ffffff;
+}
+
+.btn-ripple {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-ripple-text);
+  background-color: var(--btn-ripple-bg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+.btn-ripple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.3s ease-out, height 0.3s ease-out, opacity 0.4s ease-out;
+}
+
+.btn-ripple:active:not(:disabled)::after {
+  width: 250px;
+  height: 250px;
+  opacity: 1;
+  transition: none; /* Instant expansion on touch/press down */
+}
+
+.btn-ripple:hover:not(:disabled) {
+  background-color: #0369a1;
+}
+
+.btn-ripple:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
+
+.btn-ripple:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

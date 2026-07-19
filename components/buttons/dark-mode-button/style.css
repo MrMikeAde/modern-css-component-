@@ -1,0 +1,52 @@
+:root {
+  --btn-dark-bg: #111827;
+  --btn-dark-border: #1f2937;
+  --btn-dark-glow: #00f0ff;
+  --btn-dark-text: #9ca3af;
+  --btn-dark-text-hover: #ffffff;
+}
+
+.dark-mode-wrapper {
+  display: inline-block;
+  padding: 1.5rem;
+  background-color: #0b0f19;
+  border-radius: 12px;
+}
+
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: Courier, monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--btn-dark-text);
+  background-color: var(--btn-dark-bg);
+  border: 1px solid var(--btn-dark-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.btn-dark:hover:not(:disabled) {
+  color: var(--btn-dark-text-hover);
+  border-color: var(--btn-dark-glow);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.btn-dark:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-dark:focus-visible {
+  outline: 2px solid var(--btn-dark-glow);
+  outline-offset: 2px;
+}
+
+.btn-dark:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}

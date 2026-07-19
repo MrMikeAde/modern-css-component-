@@ -1,0 +1,51 @@
+:root {
+  --btn-und-color: #1e293b;
+  --btn-und-line: #4f46e5;
+}
+
+.btn-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-und-color);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.btn-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--btn-und-line);
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.btn-underline:hover:not(:disabled)::after {
+  width: 100%;
+  left: 0;
+}
+
+.btn-underline:active:not(:disabled) {
+  opacity: 0.7;
+}
+
+.btn-underline:focus-visible {
+  outline: 2px solid var(--btn-und-line);
+  outline-offset: 4px;
+}
+
+.btn-underline:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

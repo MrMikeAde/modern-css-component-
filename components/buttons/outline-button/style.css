@@ -1,0 +1,43 @@
+:root {
+  --btn-outline-border: #4f46e5;
+  --btn-outline-text: #4f46e5;
+  --btn-outline-bg-hover: #4f46e5;
+  --btn-outline-text-hover: #ffffff;
+  --btn-outline-radius: 8px;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-outline-text);
+  background-color: transparent;
+  border: 2px solid var(--btn-outline-border);
+  border-radius: var(--btn-outline-radius);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--btn-outline-bg-hover);
+  color: var(--btn-outline-text-hover);
+}
+
+.btn-outline:active:not(:disabled) {
+  opacity: 0.85;
+}
+
+.btn-outline:focus-visible {
+  outline: 2px solid var(--btn-outline-border);
+  outline-offset: 2px;
+}
+
+.btn-outline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

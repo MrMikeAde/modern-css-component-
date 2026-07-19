@@ -1,0 +1,49 @@
+:root {
+  --btn-success-bg: #10b981;
+  --btn-success-bg-hover: #059669;
+  --btn-success-bg-active: #047857;
+  --btn-success-text: #ffffff;
+}
+
+.btn-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-success-text);
+  background-color: var(--btn-success-bg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-success svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: var(--btn-success-bg-hover);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.btn-success:active:not(:disabled) {
+  background-color: var(--btn-success-bg-active);
+  transform: scale(0.98);
+}
+
+.btn-success:focus-visible {
+  outline: 2px solid #047857;
+  outline-offset: 2px;
+}
+
+.btn-success:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

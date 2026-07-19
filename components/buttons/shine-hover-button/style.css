@@ -1,0 +1,61 @@
+:root {
+  --btn-shine-bg: #ea580c;
+  --btn-shine-text: #ffffff;
+  --btn-shine-radius: 8px;
+}
+
+.btn-shine {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.75rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--btn-shine-text);
+  background-color: var(--btn-shine-bg);
+  border: none;
+  border-radius: var(--btn-shine-radius);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.3);
+  outline: none;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(30deg);
+  transition: none;
+}
+
+.btn-shine:hover:not(:disabled) {
+  background-color: #dd5209;
+  box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.4);
+}
+
+.btn-shine:hover:not(:disabled)::after {
+  left: 140%;
+  transition: left 0.65s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-shine:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-shine:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 3px;
+}
+
+.btn-shine:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,63 @@
+:root {
+  --btn-split-border: #1e293b;
+  --btn-split-bg-hover: #1e293b;
+  --btn-split-text: #1e293b;
+  --btn-split-text-hover: #ffffff;
+}
+
+.btn-split {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--btn-split-text);
+  background-color: transparent;
+  border: 2px solid var(--btn-split-border);
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  transition: color 0.3s ease;
+}
+
+.btn-split::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--btn-split-bg-hover);
+  z-index: 1;
+  transition: left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-split span {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-split:hover:not(:disabled) {
+  color: var(--btn-split-text-hover);
+}
+
+.btn-split:hover:not(:disabled)::before {
+  left: 0;
+}
+
+.btn-split:active:not(:disabled) {
+  opacity: 0.85;
+}
+
+.btn-split:focus-visible {
+  outline: 2px solid var(--btn-split-border);
+  outline-offset: 2px;
+}
+
+.btn-split:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
