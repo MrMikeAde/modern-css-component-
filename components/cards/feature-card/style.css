@@ -1,0 +1,21 @@
+:root {
+  --card-feat-bg: #ffffff;
+  --card-feat-border: #f1f5f9;
+  --card-feat-primary: #ec4899;
+  --card-feat-accent: #fdf2f8;
+  --card-feat-text: #475569;
+  --card-feat-radius: 12px;
+}
+
+.card-feat {
+  background-color: var(--card-feat-bg);
+  border: 1px solid var(--card-feat-border);
+  border-radius: var(--card-feat-radius);
+  padding: 1.5rem;
+  max-width: 280px;
+  transition: all 0.3s ease;
+}
+.card-feat:hover { transform: translateY(-4px); border-color: #fbcfe8; box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
+.card-feat__icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.card-feat__title { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 0; }
+.card-feat__desc { font-size: 0.85rem; color: var(--card-feat-text); line-height: 1.4; margin: 0.25rem 0 0 0; }

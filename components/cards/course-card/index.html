@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-course">
+  <div class="card-course__banner">
+    <img src="https://picsum.photos/400/220?random=18" alt="Visual CSS Course cover" class="card-course__img">
+    <span class="card-course__difficulty">Intermediate</span>
+  </div>
+  <div class="card-course__content">
+    <h3 class="card-course__title">Mastering Modern CSS Layouts</h3>
+    <span class="card-course__tutor">By Dr. Linda Vance</span>
+    <div class="card-course__stats">
+      <span>📚 12 Lessons</span>
+      <span>⏱ 4.5 Hours</span>
+    </div>
+    <div class="card-course__footer">
+      <span class="card-course__price">$39.00</span>
+      <button class="card-course__btn" type="button">Enroll Now</button>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

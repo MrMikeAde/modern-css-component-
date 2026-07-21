@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFT Showcase Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-nft">
+  <div class="card-nft__art">
+    <img src="https://picsum.photos/350/350?random=28" alt="Cyberpunk Neon Token Artwork" class="card-nft__img">
+    <span class="card-nft__timer">04h 12m Left</span>
+  </div>
+  <div class="card-nft__body">
+    <h3 class="card-nft__title">Ethereal Vapor #84</h3>
+    <div class="card-nft__bid-row">
+      <div class="card-nft__bid-box">
+        <span class="card-nft__label">Current Bid</span>
+        <span class="card-nft__value">1.45 ETH</span>
+      </div>
+      <button class="card-nft__btn" type="button">Place Bid</button>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

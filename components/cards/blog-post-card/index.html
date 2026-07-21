@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-blog">
+  <div class="card-blog__thumbnail">
+    <img src="https://picsum.photos/400/250?random=12" alt="CSS Grid Workspace" class="card-blog__img" loading="lazy">
+  </div>
+  <div class="card-blog__body">
+    <div class="card-blog__meta">
+      <span class="card-blog__category">Engineering</span>
+      <time class="card-blog__date" datetime="2026-07-21">July 21, 2026</time>
+    </div>
+    <h3 class="card-blog__title">
+      <a href="#" class="card-blog__link">Next-Gen CSS Subgrid Layouts</a>
+    </h3>
+    <p class="card-blog__text">Learn how subgrids are completely redefining standard card structures across multi-column layouts...</p>
+    <div class="card-blog__author">
+      <img src="https://picsum.photos/100/100?random=13" alt="Marcus Thompson" class="card-blog__avatar">
+      <div class="card-blog__author-info">
+        <span class="card-blog__name">Marcus Thompson</span>
+        <span class="card-blog__read">5 min read</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

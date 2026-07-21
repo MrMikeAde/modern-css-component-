@@ -1,0 +1,25 @@
+:root {
+  --card-album-bg: #ffffff;
+  --card-album-border: #f1f5f9;
+  --card-album-primary: #3b82f6;
+  --card-album-accent: #475569;
+  --card-album-radius: 12px;
+}
+
+.card-album {
+  background-color: var(--card-album-bg);
+  border-radius: var(--card-album-radius);
+  overflow: hidden;
+  max-width: 240px;
+  border: 1px solid var(--card-album-border);
+  padding: 0.75rem;
+}
+.card-album__art { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 8px; background-color: #0f172a; }
+.card-album__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+.card-album:hover .card-album__img { transform: scale(1.03); }
+.card-album__play-btn { position: absolute; bottom: 0.5rem; right: 0.5rem; background-color: var(--card-album-primary); color: var(--card-album-bg); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.15); opacity: 0; transform: translateY(5px); transition: all 0.2s ease; }
+.card-album:hover .card-album__play-btn { opacity: 1; transform: translateY(0); }
+.card-album__info { padding-top: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; }
+.card-album__title { font-size: 0.9rem; font-weight: 700; color: #0f172a; margin: 0; }
+.card-album__artist { font-size: 0.75rem; color: var(--card-album-accent); }
+.card-album__year { font-size: 0.7rem; color: #94a3b8; font-weight: 500; }

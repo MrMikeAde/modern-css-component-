@@ -1,0 +1,28 @@
+:root {
+  --card-test-bg: #ffffff;
+  --card-test-border: #f1f5f9;
+  --card-test-primary: #8b5cf6;
+  --card-test-accent: #fbbf24;
+  --card-test-text: #334155;
+  --card-test-radius: 16px;
+}
+
+.card-test {
+  background-color: var(--card-test-bg);
+  border: 1px solid var(--card-test-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 360px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+}
+.card-test__stars { color: var(--card-test-accent); font-size: 0.9rem; }
+.card-test__quote { font-size: 0.95rem; line-height: 1.5; color: var(--card-test-text); font-style: italic; margin: 0; }
+.card-test__author { display: flex; align-items: center; gap: 0.5rem; font-style: normal; border-top: 1px solid var(--card-test-border); padding-top: 0.75rem; }
+.card-test__avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.card-test__meta { display: flex; flex-direction: column; text-align: left; }
+.card-test__name { font-size: 0.85rem; font-weight: 700; color: #0f172a; }
+.card-test__company { font-size: 0.7rem; color: #64748b; }

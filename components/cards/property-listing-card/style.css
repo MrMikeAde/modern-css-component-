@@ -1,0 +1,23 @@
+:root {
+  --card-prop-bg: #ffffff;
+  --card-prop-border: #e2e8f0;
+  --card-prop-primary: #0f172a;
+  --card-prop-accent: #64748b;
+  --card-prop-text: #475569;
+  --card-prop-radius: 12px;
+}
+
+.card-prop {
+  background-color: var(--card-prop-bg);
+  border-radius: var(--card-prop-radius);
+  overflow: hidden;
+  max-width: 320px;
+  border: 1px solid var(--card-prop-border);
+}
+.card-prop__photo { position: relative; aspect-ratio: 4/3; }
+.card-prop__img { width: 100%; height: 100%; object-fit: cover; }
+.card-prop__price { position: absolute; bottom: 0.75rem; left: 0.75rem; background-color: var(--card-prop-primary); color: var(--card-prop-bg); font-size: 0.85rem; font-weight: 700; padding: 0.25rem 0.5rem; border-radius: 6px; }
+.card-prop__body { padding: 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.card-prop__title { font-size: 1rem; font-weight: 700; color: var(--card-prop-primary); margin: 0; }
+.card-prop__address { font-size: 0.8rem; color: var(--card-prop-accent); margin: 0; }
+.card-prop__specs { display: flex; gap: 0.75rem; font-size: 0.75rem; color: var(--card-prop-text); font-weight: 600; border-top: 1px solid #f1f5f9; padding-top: 0.75rem; margin-top: 0.25rem; }

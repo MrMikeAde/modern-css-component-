@@ -55,7 +55,7 @@ modern-css-components/
 │   ├── badges/ 🟡        # Pill tags, count indicators, and micro-labels
 │   ├── breadcrumbs/ 🟡    # Hierarchical page navigation trails
 │   ├── buttons/ 🟢       # [COMPLETED] 25 unique, production-ready custom button elements!
-│   ├── cards/ 🟡         # Content-focused cards using Grid and Container Queries
+│   ├── cards/ 🟢         # [COMPLETED] 30 unique, production-ready custom card elements!
 │   ├── footers/ 🟡       # Standard and complex site-wide footer layouts
 │   ├── forms/ 🟡         # Accessible inputs, validation states, checkboxes, and radio buttons
 │   ├── heroes/ 🟡        # Engaging intro sections, header headers, and landing banners
@@ -75,7 +75,7 @@ modern-css-components/
 
 ## 🟢 Buttons Category Directory (`components/buttons/`)
 
-Explore our newly completed collection of 25 premium button variants, designed to fit into any modern UI or SaaS application:
+Explore our completed collection of 25 premium button variants, designed to fit into any modern UI or SaaS application:
 
 1. [Primary Button](./components/buttons/primary-button) - Elegant Indigo primary brand trigger.
 2. [Secondary Button](./components/buttons/secondary-button) - Neutral Slate low-emphasis support action.
@@ -102,6 +102,43 @@ Explore our newly completed collection of 25 premium button variants, designed t
 23. [Dark Mode Button](./components/buttons/dark-mode-button) - Dark cyber-tech button emitting glowing neon cyan shadows.
 24. [Soft UI Button](./components/buttons/soft-ui-button) - Soft-lit elegant double shadow reporting button.
 25. [Premium CTA Button](./components/buttons/premium-cta-button) - Luxe gold-brass gradient CTA with integrated shimmer sweeps.
+
+---
+
+## 🟢 Cards Category Directory (`components/cards/`)
+
+Explore our newly completed collection of 30 premium card variants, designed to display structured content natively in SaaS, dashboard, or layout systems:
+
+1. [Basic Card](./components/cards/basic-card) - Content card with soft shadow and versatile text.
+2. [Product Card](./components/cards/product-card) - E-commerce layout with badges, price tags, and cart action.
+3. [Blog Post Card](./components/cards/blog-post-card) - Article preview with authors, read times, and tags.
+4. [Pricing Card](./components/cards/pricing-card) - SaaS subscription choosing options with custom checks.
+5. [User Profile Card](./components/cards/user-profile-card) - User profile block with cover banners and actions.
+6. [Team Member Card](./components/cards/team-member-card) - Photo container with sliding metadata.
+7. [Testimonial Card](./components/cards/testimonial-card) - Quote block featuring quotes and rating scales.
+8. [Feature Card](./components/cards/feature-card) - Icon-first layout highlighting product details.
+9. [Service Card](./components/cards/service-card) - Service offering block listing bulleted structures.
+10. [Statistics Card](./components/cards/statistics-card) - Metric reporter displaying percentage change badges.
+11. [Dashboard Summary Card](./components/cards/dashboard-summary-card) - Management metric with horizontal progress trackers.
+12. [Event Card](./components/cards/event-card) - Calendar events container displaying locator icons.
+13. [Course Card](./components/cards/course-card) - Educational course block showing lesson count stats.
+14. [Job Listing Card](./components/cards/job-listing-card) - Wide job panel showcasing salary and location tags.
+15. [Property Listing Card](./components/cards/property-listing-card) - Real estate listing displaying housing dimensions.
+16. [Restaurant Card](./components/cards/restaurant-card) - Food listing displaying cuisine types and delivery speed.
+17. [Travel Destination Card](./components/cards/travel-destination-card) - Bleed scenery layout showcasing price overlays.
+18. [E-commerce Product Card](./components/cards/e-commerce-product-card) - Shopping listing displaying variant swatches and discounts.
+19. [Shopping Cart Card](./components/cards/shopping-cart-card) - Wide checkout row displaying stepper counter controls.
+20. [Music Album Card](./components/cards/music-album-card) - Audio album visual featuring hover playback buttons.
+21. [Video Thumbnail Card](./components/cards/video-thumbnail-card) - 16:9 thumbnail player displaying length badges.
+22. [News Card](./components/cards/news-card) - Bold serif news column with category identifiers.
+23. [Portfolio Project Card](./components/cards/portfolio-project-card) - Visual showcase item displaying overlay case studies.
+24. [NFT Showcase Card](./components/cards/nft-showcase-card) - Digital collectible block displaying auction clock timers.
+25. [Glassmorphism Card](./components/cards/glassmorphism-card) - Frost card utilizing backdrop filters.
+26. [Neumorphism Card](./components/cards/neumorphism-card) - Soft UI block utilizing double shadows.
+27. [Minimal Card](./components/cards/minimal-card) - Editorial block featuring spacious margins.
+28. [Gradient Card](./components/cards/gradient-card) - Mesh linear gradient visual showing contrast actions.
+29. [Dark Theme Card](./components/cards/dark-theme-card) - Developer terminal code console log snippet block.
+30. [Premium SaaS Feature Card](./components/cards/premium-saas-feature-card) - Enterprise visual container with golden trims.
 
 ---
 

@@ -1,0 +1,26 @@
+:root {
+  --card-course-bg: #ffffff;
+  --card-course-border: #f1f5f9;
+  --card-course-primary: #4f46e5;
+  --card-course-accent: rgba(15,23,42,0.8);
+  --card-course-text: #475569;
+  --card-course-radius: 12px;
+}
+
+.card-course {
+  background-color: var(--card-course-bg);
+  border-radius: var(--card-course-radius);
+  overflow: hidden;
+  max-width: 300px;
+  border: 1px solid var(--card-course-border);
+}
+.card-course__banner { position: relative; aspect-ratio: 16/9; }
+.card-course__img { width: 100%; height: 100%; object-fit: cover; }
+.card-course__difficulty { position: absolute; top: 0.5rem; left: 0.5rem; background-color: var(--card-course-accent); color: var(--card-course-bg); font-size: 0.65rem; padding: 0.2rem 0.4rem; border-radius: 4px; }
+.card-course__content { padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.card-course__title { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0; }
+.card-course__tutor { font-size: 0.75rem; color: #64748b; font-weight: 500; }
+.card-course__stats { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--card-course-text); margin-top: 0.25rem; }
+.card-course__footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+.card-course__price { font-size: 1.1rem; font-weight: 800; color: var(--card-course-primary); }
+.card-course__btn { background-color: var(--card-course-primary); color: var(--card-course-bg); border: none; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; }

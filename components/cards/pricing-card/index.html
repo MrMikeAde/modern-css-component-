@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-pricing card-pricing--featured">
+  <div class="card-pricing__badge">Popular</div>
+  <header class="card-pricing__header">
+    <h3 class="card-pricing__title">Growth Plan</h3>
+    <div class="card-pricing__price-box">
+      <span class="card-pricing__currency">$</span>
+      <span class="card-pricing__price">49</span>
+      <span class="card-pricing__period">/mo</span>
+    </div>
+  </header>
+  <div class="card-pricing__body">
+    <ul class="card-pricing__features" role="list">
+      <li class="card-pricing__feature">✓ Up to 10 team seats</li>
+      <li class="card-pricing__feature">✓ 50GB space allocation</li>
+      <li class="card-pricing__feature">✓ Dedicated API endpoints</li>
+    </ul>
+  </div>
+  <footer class="card-pricing__footer">
+    <button class="card-pricing__btn" type="button">Upgrade Growth</button>
+  </footer>
+</article>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+:root {
+  --card-travel-bg: #0f172a;
+  --card-travel-primary: #38bdf8;
+  --card-travel-accent: #fbbf24;
+  --card-travel-radius: 16px;
+}
+
+.card-travel {
+  max-width: 280px;
+  border-radius: var(--card-travel-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.card-travel__cover { position: relative; aspect-ratio: 4/5; overflow: hidden; background-color: var(--card-travel-bg); }
+.card-travel__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.card-travel:hover .card-travel__img { transform: scale(1.05); }
+.card-travel__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(15,23,42,0.95) 90%); display: flex; flex-direction: column; justify-content: space-between; padding: 1rem; }
+.card-travel__meta { display: flex; justify-content: space-between; align-items: center; }
+.card-travel__badge { background-color: rgba(255,255,255,0.2); color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; backdrop-filter: blur(4px); }
+.card-travel__rating { color: var(--card-travel-accent); font-size: 0.8rem; font-weight: 700; }
+.card-travel__content { display: flex; flex-direction: column; gap: 0.35rem; color: #ffffff; }
+.card-travel__title { font-size: 1.25rem; font-weight: 700; margin: 0; }
+.card-travel__desc { font-size: 0.75rem; opacity: 0.85; margin: 0; line-height: 1.4; }
+.card-travel__price { font-size: 0.85rem; font-weight: 700; color: var(--card-travel-primary); margin-top: 0.25rem; }

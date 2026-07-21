@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-profile">
+  <div class="card-profile__banner"></div>
+  <div class="card-profile__body">
+    <div class="card-profile__avatar-box">
+      <img src="https://picsum.photos/120/120?random=14" alt="Seraphina Vance" class="card-profile__avatar">
+    </div>
+    <h3 class="card-profile__name">Seraphina Vance</h3>
+    <span class="card-profile__role">Lead UI Designer</span>
+    <p class="card-profile__bio">Passionate about design systems, responsive layouts, and pixel-perfect setups.</p>
+    <div class="card-profile__actions">
+      <button class="card-profile__btn card-profile__btn--primary" type="button">Follow</button>
+      <button class="card-profile__btn card-profile__btn--secondary" type="button">Message</button>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>
