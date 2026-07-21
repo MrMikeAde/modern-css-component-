@@ -1,0 +1,25 @@
+:root {
+  --card-event-bg: #ffffff;
+  --card-event-border: #f1f5f9;
+  --card-event-primary: #ef4444;
+  --card-event-accent: #0f172a;
+  --card-event-text: #64748b;
+  --card-event-radius: 12px;
+}
+
+.card-event {
+  background-color: var(--card-event-bg);
+  border-radius: var(--card-event-radius);
+  overflow: hidden;
+  max-width: 280px;
+  border: 1px solid var(--card-event-border);
+}
+.card-event__image { position: relative; aspect-ratio: 16/10; }
+.card-event__img { width: 100%; height: 100%; object-fit: cover; }
+.card-event__date-badge { position: absolute; top: 0.5rem; right: 0.5rem; background-color: var(--card-event-bg); text-align: center; border-radius: 6px; padding: 0.25rem 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card-event__month { display: block; font-size: 0.65rem; font-weight: 800; color: var(--card-event-primary); }
+.card-event__day { display: block; font-size: 0.9rem; font-weight: 800; color: var(--card-event-accent); }
+.card-event__body { padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.card-event__title { font-size: 0.95rem; font-weight: 700; color: var(--card-event-accent); margin: 0; }
+.card-event__loc { font-size: 0.75rem; color: var(--card-event-text); margin: 0; }
+.card-event__btn { background-color: var(--card-event-primary); color: var(--card-event-bg); border: none; font-weight: 600; padding: 0.5rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; }

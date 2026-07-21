@@ -1,0 +1,25 @@
+:root {
+  --card-rest-bg: #ffffff;
+  --card-rest-border: #f1f5f9;
+  --card-rest-primary: #0f172a;
+  --card-rest-accent: #fbbf24;
+  --card-rest-text: #475569;
+  --card-rest-radius: 12px;
+}
+
+.card-rest {
+  background-color: var(--card-rest-bg);
+  border-radius: var(--card-rest-radius);
+  overflow: hidden;
+  max-width: 320px;
+  border: 1px solid var(--card-rest-border);
+}
+.card-rest__header { position: relative; aspect-ratio: 16/10; }
+.card-rest__img { width: 100%; height: 100%; object-fit: cover; }
+.card-rest__delivery { position: absolute; bottom: 0.5rem; right: 0.5rem; background-color: var(--card-rest-bg); color: var(--card-rest-primary); font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.4rem; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card-rest__body { padding: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.card-rest__meta { display: flex; justify-content: space-between; align-items: baseline; }
+.card-rest__title { font-size: 1rem; font-weight: 700; color: var(--card-rest-primary); margin: 0; }
+.card-rest__rating { font-size: 0.8rem; font-weight: 700; color: var(--card-rest-accent); }
+.card-rest__cuisine { font-size: 0.75rem; color: #64748b; font-weight: 500; }
+.card-rest__desc { font-size: 0.8rem; color: var(--card-rest-text); margin: 0.25rem 0 0 0; line-height: 1.4; }

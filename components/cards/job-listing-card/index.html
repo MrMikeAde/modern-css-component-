@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listing Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-job">
+  <div class="card-job__left">
+    <div class="card-job__logo">💼</div>
+    <div class="card-job__details">
+      <h3 class="card-job__title">Senior UX/UI Architect</h3>
+      <span class="card-job__company">ByteCraft Systems</span>
+      <div class="card-job__tags">
+        <span class="card-job__tag card-job__tag--type">Full-Time</span>
+        <span class="card-job__tag">Remote</span>
+        <span class="card-job__tag card-job__tag--salary">$120k - $150k</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-job__right">
+    <button class="card-job__btn" type="button">Apply Now</button>
+  </div>
+</article>
+
+</body>
+</html>

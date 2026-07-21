@@ -1,0 +1,24 @@
+:root {
+  --card-video-bg: #0f172a;
+  --card-video-border: #f1f5f9;
+  --card-video-primary: #0f172a;
+  --card-video-accent: rgba(0,0,0,0.8);
+  --card-video-text: #475569;
+  --card-video-radius: 10px;
+}
+
+.card-video {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card-video__preview { position: relative; aspect-ratio: 16/9; overflow: hidden; border-radius: var(--card-video-radius); background-color: var(--card-video-bg); }
+.card-video__img { width: 100%; height: 100%; object-fit: cover; }
+.card-video__duration { position: absolute; bottom: 0.5rem; right: 0.5rem; background-color: var(--card-video-accent); color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.35rem; border-radius: 4px; }
+.card-video__body { display: flex; gap: 0.65rem; }
+.card-video__chan-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.card-video__info { display: flex; flex-direction: column; gap: 0.15rem; }
+.card-video__title { font-size: 0.85rem; font-weight: 700; color: var(--card-video-bg); line-height: 1.3; margin: 0; }
+.card-video__channel { font-size: 0.75rem; color: var(--card-video-text); }
+.card-video__meta { display: flex; gap: 0.25rem; font-size: 0.7rem; color: #64748b; }

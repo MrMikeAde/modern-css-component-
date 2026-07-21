@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Summary Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-dash">
+  <div class="card-dash__meta">
+    <span class="card-dash__title">Cloud Disk Usage</span>
+    <span class="card-dash__pct">72%</span>
+  </div>
+  <div class="card-dash__progress-bar" aria-label="Usage Percentage">
+    <div class="card-dash__progress-fill" style="width: 72%;"></div>
+  </div>
+  <span class="card-dash__warning">Warning: Approaches full capacity limit.</span>
+</article>
+
+</body>
+</html>

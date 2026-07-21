@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-product">
+  <div class="card-product__image-wrapper">
+    <img src="https://picsum.photos/400/300?random=11" alt="Sleek Mechanical Keyboard" class="card-product__img" loading="lazy">
+    <span class="card-product__tag">Best Seller</span>
+  </div>
+  <div class="card-product__body">
+    <div class="card-product__rating">
+      <span class="card-product__stars" aria-hidden="true">★★★★★</span>
+      <span class="card-product__count">(48)</span>
+    </div>
+    <h3 class="card-product__title">HexaType Keyboard</h3>
+    <p class="card-product__desc">Compact 65% hot-swappable keyboard with tactile switches.</p>
+    <div class="card-product__footer">
+      <span class="card-product__price">$149.00</span>
+      <button class="card-product__btn" type="button">Add to Cart</button>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

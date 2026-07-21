@@ -1,0 +1,23 @@
+:root {
+  --card-prof-primary: #10b981;
+}
+
+.card-profile {
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  max-width: 300px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+.card-profile__banner { height: 75px; background: linear-gradient(135deg, var(--card-prof-primary), #059669); }
+.card-profile__body { padding: 0 1.25rem 1.25rem 1.25rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.card-profile__avatar-box { margin-top: -36px; margin-bottom: 0.5rem; }
+.card-profile__avatar { width: 72px; height: 72px; border-radius: 50%; border: 3px solid #ffffff; object-fit: cover; }
+.card-profile__name { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 0; }
+.card-profile__role { font-size: 0.8rem; color: #64748b; font-weight: 600; }
+.card-profile__bio { font-size: 0.85rem; color: #475569; margin: 0.5rem 0 1rem 0; line-height: 1.4; }
+.card-profile__actions { display: flex; gap: 0.5rem; width: 100%; }
+.card-profile__btn { flex: 1; border: none; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.card-profile__btn--primary { background-color: #0f172a; color: #ffffff; }
+.card-profile__btn--secondary { background-color: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; }

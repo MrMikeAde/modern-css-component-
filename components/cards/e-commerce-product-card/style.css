@@ -1,0 +1,32 @@
+:root {
+  --card-ecom-bg: #ffffff;
+  --card-ecom-border: #f1f5f9;
+  --card-ecom-primary: #0f172a;
+  --card-ecom-accent: #ef4444;
+  --card-ecom-text: #64748b;
+  --card-ecom-radius: 12px;
+}
+
+.card-ecom {
+  background-color: var(--card-ecom-bg);
+  border-radius: var(--card-ecom-radius);
+  overflow: hidden;
+  max-width: 280px;
+  border: 1px solid var(--card-ecom-border);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+.card-ecom__visual { position: relative; aspect-ratio: 1/1; overflow: hidden; background-color: #f8fafc; }
+.card-ecom__img { width: 100%; height: 100%; object-fit: cover; }
+.card-ecom__discount { position: absolute; top: 0.5rem; left: 0.5rem; background-color: var(--card-ecom-accent); color: var(--card-ecom-bg); font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.35rem; border-radius: 4px; }
+.card-ecom__favorite { position: absolute; top: 0.5rem; right: 0.5rem; border: none; background-color: var(--card-ecom-bg); color: var(--card-ecom-text); font-size: 1rem; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card-ecom__favorite:hover { color: var(--card-ecom-accent); }
+.card-ecom__details { padding: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.card-ecom__title { font-size: 0.95rem; font-weight: 700; color: var(--card-ecom-primary); margin: 0; }
+.card-ecom__pricing { display: flex; align-items: center; gap: 0.5rem; }
+.card-ecom__current-price { font-size: 1.1rem; font-weight: 800; color: var(--card-ecom-accent); }
+.card-ecom__old-price { font-size: 0.85rem; text-decoration: line-through; color: #94a3b8; }
+.card-ecom__variants { display: flex; gap: 0.4rem; margin-top: 0.25rem; }
+.card-ecom__var-dot { width: var(--card-ecom-radius); height: var(--card-ecom-radius); border-radius: 50%; cursor: pointer; border: 1px solid #cbd5e1; }
+.card-ecom__var-dot--black { background-color: var(--card-ecom-primary); }
+.card-ecom__var-dot--blue { background-color: #3b82f6; }
+.card-ecom__var-dot--grey { background-color: #94a3b8; }

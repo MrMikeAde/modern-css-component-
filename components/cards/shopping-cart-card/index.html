@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-cart">
+  <img src="https://picsum.photos/120/120?random=23" alt="Leather Duffel Bag" class="card-cart__thumbnail">
+  <div class="card-cart__content">
+    <div class="card-cart__main">
+      <h3 class="card-cart__title">Waterproof Travel Bag</h3>
+      <span class="card-cart__meta">Size: Medium | Color: Tan</span>
+    </div>
+    <div class="card-cart__foot">
+      <div class="card-cart__stepper">
+        <button class="card-cart__step-btn" type="button" aria-label="Decrease quantity">-</button>
+        <span class="card-cart__quantity">2</span>
+        <button class="card-cart__step-btn" type="button" aria-label="Increase quantity">+</button>
+      </div>
+      <span class="card-cart__price">$180.00</span>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

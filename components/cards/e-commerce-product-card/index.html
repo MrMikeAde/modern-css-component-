@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Product Card - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="card-ecom">
+  <div class="card-ecom__visual">
+    <img src="https://picsum.photos/400/350?random=22" alt="Ergonomic S-Curve Office Chair" class="card-ecom__img">
+    <span class="card-ecom__discount">-20%</span>
+    <button class="card-ecom__favorite" type="button" aria-label="Add to wishlist">♥</button>
+  </div>
+  <div class="card-ecom__details">
+    <h3 class="card-ecom__title">Ergonomic Mesh Chair</h3>
+    <div class="card-ecom__pricing">
+      <span class="card-ecom__current-price">$239.00</span>
+      <span class="card-ecom__old-price">$299.00</span>
+    </div>
+    <div class="card-ecom__variants">
+      <span class="card-ecom__var-dot card-ecom__var-dot--black" aria-label="Black color"></span>
+      <span class="card-ecom__var-dot card-ecom__var-dot--blue" aria-label="Blue color"></span>
+      <span class="card-ecom__var-dot card-ecom__var-dot--grey" aria-label="Grey color"></span>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

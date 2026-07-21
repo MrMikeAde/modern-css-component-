@@ -1,0 +1,20 @@
+:root {
+  --card-dash-bg: #ffffff;
+  --card-dash-border: #e2e8f0;
+  --card-dash-primary: #f59e0b;
+  --card-dash-accent: #f1f5f9;
+  --card-dash-text: #475569;
+  --card-dash-radius: 10px;
+}
+
+.card-dash {
+  background-color: var(--card-dash-bg);
+  border: 1px solid var(--card-dash-border);
+  border-radius: var(--card-dash-radius);
+  padding: 1rem;
+  max-width: 250px;
+}
+.card-dash__meta { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; color: var(--card-dash-text); }
+.card-dash__progress-bar { height: 8px; background-color: var(--card-dash-accent); border-radius: 4px; overflow: hidden; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+.card-dash__progress-fill { height: 100%; background-color: var(--card-dash-primary); border-radius: 4px; }
+.card-dash__warning { font-size: 0.7rem; color: #d97706; font-weight: 500; }

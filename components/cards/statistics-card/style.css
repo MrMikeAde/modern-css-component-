@@ -1,0 +1,22 @@
+:root {
+  --card-stat-bg: #ffffff;
+  --card-stat-border: #e2e8f0;
+  --card-stat-primary: #0f172a;
+  --card-stat-accent: #d1fae5;
+  --card-stat-text: #64748b;
+  --card-stat-radius: 12px;
+}
+
+.card-stat {
+  background-color: var(--card-stat-bg);
+  border: 1px solid var(--card-stat-border);
+  border-radius: var(--card-stat-radius);
+  padding: 1.25rem;
+  max-width: 260px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+.card-stat__label { font-size: 0.8rem; color: var(--card-stat-text); font-weight: 600; text-transform: uppercase; }
+.card-stat__row { display: flex; align-items: baseline; justify-content: space-between; margin-top: 0.5rem; }
+.card-stat__metric { font-size: 1.75rem; font-weight: 800; color: var(--card-stat-primary); }
+.card-stat__badge { background-color: var(--card-stat-accent); color: #065f46; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.4rem; border-radius: 4px; }
+.card-stat__desc { font-size: 0.75rem; color: var(--card-stat-text); margin: 0.5rem 0 0 0; }
