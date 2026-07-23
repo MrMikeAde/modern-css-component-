@@ -1,0 +1,107 @@
+:root {
+  --job-bg: #ffffff;
+  --job-border: #e2e8f0;
+  --job-text: #334155;
+  --job-text-light: #64748b;
+  --job-title: #0f172a;
+  --job-primary: #6d28d9;
+  --job-primary-hover: #5b21b6;
+  --job-primary-light: #f5f3ff;
+  --job-radius: 12px;
+}
+
+.form-job {
+  background-color: var(--job-bg);
+  border: 1px solid var(--job-border);
+  border-radius: var(--job-radius);
+  padding: 2.5rem;
+  inline-size: 100%;
+  max-inline-size: 650px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-job__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--job-title);
+  margin-block-end: 0.375rem;
+}
+
+.form-job__subtitle {
+  font-size: 0.875rem;
+  color: var(--job-text-light);
+  margin: 0;
+}
+
+.form-job__section {
+  border-top: 1px solid var(--job-border);
+  padding-block-start: 1.25rem;
+  margin-block-start: 1rem;
+}
+
+.form-job__section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--job-title);
+  margin-block-end: 1rem;
+}
+
+.form-job__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .form-job__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-job__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-job__label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--job-text-light);
+}
+
+.form-job__input {
+  padding-block: 0.625rem;
+  padding-inline: 0.875rem;
+  border: 1px solid var(--job-border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: var(--job-title);
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.form-job__input:focus {
+  outline: none;
+  border-color: var(--job-primary);
+  box-shadow: 0 0 0 3px var(--job-primary-light);
+}
+
+.form-job__submit {
+  padding-block: 0.75rem;
+  background-color: var(--job-primary);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-block-start: 1rem;
+}
+
+.form-job__submit:hover {
+  background-color: var(--job-primary-hover);
+}

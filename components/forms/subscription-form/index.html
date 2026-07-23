@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-sub">
+    <header class="form-sub__header">
+      <h2 class="form-sub__title">Confirm Subscription</h2>
+      <p class="form-sub__subtitle">Select your active cloud deployment tier below.</p>
+    </header>
+
+    <form class="form-sub__body" action="#" method="POST" novalidate>
+      <div class="form-sub__plans">
+        <label class="form-sub__plan-card">
+          <input type="radio" name="plan" value="growth" checked class="form-sub__plan-radio">
+          <span class="form-sub__plan-content">
+            <span class="form-sub__plan-title">Growth Tier</span>
+            <span class="form-sub__plan-desc">For scaling development teams</span>
+          </span>
+          <span class="form-sub__plan-price">$29/mo</span>
+        </label>
+        <label class="form-sub__plan-card">
+          <input type="radio" name="plan" value="scale" class="form-sub__plan-radio">
+          <span class="form-sub__plan-content">
+            <span class="form-sub__plan-title">Scale Tier</span>
+            <span class="form-sub__plan-desc">For high traffic web applications</span>
+          </span>
+          <span class="form-sub__plan-price">$99/mo</span>
+        </label>
+      </div>
+
+      <button class="form-sub__submit" type="submit">Activate Account</button>
+    </form>
+  </div>
+
+</body>
+</html>

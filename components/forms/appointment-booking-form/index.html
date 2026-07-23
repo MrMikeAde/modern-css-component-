@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Booking Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-book">
+    <header class="form-book__header">
+      <h2 class="form-book__title">Book Appointment</h2>
+      <p class="form-book__subtitle">Schedule your professional diagnostic consultation block instantly.</p>
+    </header>
+
+    <form class="form-book__body" action="#" method="POST" novalidate>
+      <div class="form-book__field">
+        <label class="form-book__label" for="bk-date">Choose Date</label>
+        <input class="form-book__input" type="date" id="bk-date" name="bookdate" required>
+      </div>
+
+      <div class="form-book__field">
+        <label class="form-book__label">Preferred Session</label>
+        <div class="form-book__slots">
+          <label class="form-book__slot-card">
+            <input type="radio" name="session" value="morning" checked class="form-book__slot-radio">
+            <span class="form-book__slot-title">Morning</span>
+            <span class="form-book__slot-time">09:00 AM - 12:00 PM</span>
+          </label>
+          <label class="form-book__slot-card">
+            <input type="radio" name="session" value="afternoon" class="form-book__slot-radio">
+            <span class="form-book__slot-title">Afternoon</span>
+            <span class="form-book__slot-time">01:00 PM - 05:00 PM</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="form-book__submit" type="submit">Confirm Secure Booking</button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -57,7 +57,7 @@ modern-css-components/
 │   ├── buttons/ 🟢       # [COMPLETED] 25 unique, production-ready custom button elements!
 │   ├── cards/ 🟢         # [COMPLETED] 30 unique, production-ready custom card elements!
 │   ├── footers/ 🟡       # Standard and complex site-wide footer layouts
-│   ├── forms/ 🟡         # Accessible inputs, validation states, checkboxes, and radio buttons
+│   ├── forms/ 🟢         # [COMPLETED] 25 unique, production-ready accessible forms!
 │   ├── heroes/ 🟡        # Engaging intro sections, header headers, and landing banners
 │   ├── loaders/ 🟡       # Infinite CSS animations, spinners, and skeleton screens
 │   ├── modals/ 🟡        # Accessible pop-ups utilizing the native HTML <dialog> element
@@ -139,6 +139,38 @@ Explore our newly completed collection of 30 premium card variants, designed to 
 28. [Gradient Card](./components/cards/gradient-card) - Mesh linear gradient visual showing contrast actions.
 29. [Dark Theme Card](./components/cards/dark-theme-card) - Developer terminal code console log snippet block.
 30. [Premium SaaS Feature Card](./components/cards/premium-saas-feature-card) - Enterprise visual container with golden trims.
+
+---
+
+## 🟢 Forms Category Directory (`components/forms/`)
+
+Explore our completed collection of 25 premium form variants, designed to fit cleanly into modern SaaS landing pages, administrative panels, or payment screens:
+
+1. [Login Form](./components/forms/login-form) - Classic credentials and social authentication portal.
+2. [Registration Form](./components/forms/registration-form) - Comprehensive user creation and validation grid.
+3. [Contact Form](./components/forms/contact-form) - Touchpoint grid layout with spacious text areas.
+4. [Newsletter Signup](./components/forms/newsletter-signup) - Inline visual subscription bar with hidden labels.
+5. [Search Form](./components/forms/search-form) - Micro search input with popularity filter tags.
+6. [Checkout Form](./components/forms/checkout-form) - Multi-step delivery detail grid and session choices.
+7. [Payment Form](./components/forms/payment-form) - Credit card detail touchpoint with interactive visual previews.
+8. [Multi-Column Form](./components/forms/multi-column-form) - Dynamic organizational panel splitting fields into grids.
+9. [Profile Settings Form](./components/forms/profile-settings-form) - Dashboard administrative settings with avatar mockups.
+10. [Password Reset Form](./components/forms/password-reset-form) - Clean safety instruction and recovery token triggers.
+11. [OTP Verification Form](./components/forms/otp-verification-form) - Compact multi-digit security code panel with active indicators.
+12. [File Upload Form](./components/forms/file-upload-form) - Dotted visual drop zone container with file preview metrics.
+13. [Appointment Booking Form](./components/forms/appointment-booking-form) - Scheduling console with native calendars and slot options.
+14. [Feedback Form](./components/forms/feedback-form) - Client star rating reviews and additional text blocks.
+15. [Survey Form](./components/forms/survey-form) - Segmented multi-metric questionnaire with bullet controls.
+16. [Job Application Form](./components/forms/job-application-form) - Generous candidate file and personal detail divider card.
+17. [Event Registration Form](./components/forms/event-registration-form) - Admission passage pass with numeric seat counters.
+18. [Medical Intake Form](./components/forms/medical-intake-form) - Emergency contact grids and diagnostic health disclosures.
+19. [Support Ticket Form](./components/forms/support-ticket-form) - Category priority lists and rich symptom description fields.
+20. [Subscription Form](./components/forms/subscription-form) - SaaS subscription checkout panel showing plan comparisons.
+21. [Floating Label Form](./components/forms/floating-label-form) - Textfields with absolute label animations translating upward on focus.
+22. [Glassmorphism Form](./components/forms/glassmorphism-form) - Translucent frosted glass panel with gorgeous border glows.
+23. [Neumorphism Form](./components/forms/neumorphism-form) - Tactile double soft-shadow interface with inset press actions.
+24. [Minimal Form](./components/forms/minimal-form) - Scandinavian editorial typography layout with thin borders.
+25. [Premium SaaS Form](./components/forms/premium-saas-form) - Luxe dark console displaying golden trims and radial mesh gradients.
 
 ---
 

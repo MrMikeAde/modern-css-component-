@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-checkout">
+    <header class="form-checkout__header">
+      <h2 class="form-checkout__title">Secure Checkout</h2>
+      <p class="form-checkout__subtitle">Review your details and finalize your shipping info.</p>
+    </header>
+
+    <form class="form-checkout__body" action="#" method="POST" novalidate>
+      <section class="form-checkout__section">
+        <h3 class="form-checkout__section-title">1. Shipping Address</h3>
+        <div class="form-checkout__grid">
+          <div class="form-checkout__field form-checkout__field--full">
+            <label class="form-checkout__label" for="chk-name">Full Name</label>
+            <input class="form-checkout__input" type="text" id="chk-name" name="name" required placeholder="Alexander Wright">
+          </div>
+          <div class="form-checkout__field form-checkout__field--full">
+            <label class="form-checkout__label" for="chk-street">Street Address</label>
+            <input class="form-checkout__input" type="text" id="chk-street" name="street" required placeholder="123 Science Way, Suite 400">
+          </div>
+          <div class="form-checkout__field">
+            <label class="form-checkout__label" for="chk-city">City</label>
+            <input class="form-checkout__input" type="text" id="chk-city" name="city" required placeholder="Boston">
+          </div>
+          <div class="form-checkout__field">
+            <label class="form-checkout__label" for="chk-state">State / Province</label>
+            <input class="form-checkout__input" type="text" id="chk-state" name="state" required placeholder="MA">
+          </div>
+          <div class="form-checkout__field">
+            <label class="form-checkout__label" for="chk-zip">Postal Code</label>
+            <input class="form-checkout__input" type="text" id="chk-zip" name="zip" required placeholder="02115">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-checkout__section">
+        <h3 class="form-checkout__section-title">2. Shipping Method</h3>
+        <div class="form-checkout__shipping-options">
+          <label class="form-checkout__shipping-card">
+            <input type="radio" name="shipping" value="standard" checked class="form-checkout__shipping-radio">
+            <span class="form-checkout__shipping-content">
+              <span class="form-checkout__shipping-title">Standard Shipping</span>
+              <span class="form-checkout__shipping-desc">Delivered in 3-5 business days</span>
+            </span>
+            <span class="form-checkout__shipping-price">Free</span>
+          </label>
+          <label class="form-checkout__shipping-card">
+            <input type="radio" name="shipping" value="express" class="form-checkout__shipping-radio">
+            <span class="form-checkout__shipping-content">
+              <span class="form-checkout__shipping-title">Express Delivery</span>
+              <span class="form-checkout__shipping-desc">Delivered in 1-2 business days</span>
+            </span>
+            <span class="form-checkout__shipping-price">$15.00</span>
+          </label>
+        </div>
+      </section>
+
+      <button class="form-checkout__submit" type="submit">Proceed to Payment</button>
+    </form>
+  </div>
+
+</body>
+</html>

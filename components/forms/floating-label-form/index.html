@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floating Label Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+    body { background-color: #f1f5f9; }
+  </style>
+</head>
+<body>
+
+  <div class="form-floating">
+    <header class="form-floating__header">
+      <h2 class="form-floating__title">Floating Labels</h2>
+      <p class="form-floating__subtitle">Experience pure CSS label transitions on active inputs.</p>
+    </header>
+
+    <form class="form-floating__body" action="#" method="POST" novalidate>
+      <div class="form-floating__field">
+        <input class="form-floating__input" type="text" id="fl-user" name="user" placeholder=" " required>
+        <label class="form-floating__label" for="fl-user">Username</label>
+      </div>
+
+      <div class="form-floating__field">
+        <input class="form-floating__input" type="password" id="fl-pass" name="pass" placeholder=" " required>
+        <label class="form-floating__label" for="fl-pass">Password</label>
+      </div>
+
+      <button class="form-floating__submit" type="submit">Process Action</button>
+    </form>
+  </div>
+
+</body>
+</html>

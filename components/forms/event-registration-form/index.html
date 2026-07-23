@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-event">
+    <header class="form-event__header">
+      <h2 class="form-event__title">Event Ticket Registry</h2>
+      <p class="form-event__subtitle">Book your standard admission pass to our upcoming Tech Summit.</p>
+    </header>
+
+    <form class="form-event__body" action="#" method="POST" novalidate>
+      <div class="form-event__field">
+        <label class="form-event__label" for="ev-seats">Number of Seats</label>
+        <input class="form-event__input" type="number" id="ev-seats" name="seats" min="1" max="5" value="1" required>
+      </div>
+
+      <div class="form-event__field">
+        <label class="form-event__label" for="ev-meal">Dietary Preference</label>
+        <select class="form-event__select" id="ev-meal" name="diet">
+          <option value="none">Standard Meal Plan</option>
+          <option value="vegetarian">Vegetarian Menu</option>
+          <option value="vegan">Vegan / Plant-Based</option>
+          <option value="gluten-free">Gluten-Free Plan</option>
+        </select>
+      </div>
+
+      <button class="form-event__submit" type="submit">Complete Secure Registration</button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+:root {
+  --sub-bg: #ffffff;
+  --sub-border: #e2e8f0;
+  --sub-text: #334155;
+  --sub-text-light: #64748b;
+  --sub-title: #0f172a;
+  --sub-primary: #4f46e5;
+  --sub-primary-hover: #4338ca;
+  --sub-primary-light: #e0e7ff;
+  --sub-radius: 12px;
+}
+
+.form-sub {
+  background-color: var(--sub-bg);
+  border: 1px solid var(--sub-border);
+  border-radius: var(--sub-radius);
+  padding: 2.5rem;
+  inline-size: 100%;
+  max-inline-size: 500px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-sub__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--sub-title);
+  margin-block-end: 0.375rem;
+}
+
+.form-sub__subtitle {
+  font-size: 0.875rem;
+  color: var(--sub-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.form-sub__plans {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-block-start: 1rem;
+}
+
+.form-sub__plan-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border: 1px solid var(--sub-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-sub__plan-radio {
+  margin-inline-end: 1rem;
+  accent-color: var(--sub-primary);
+}
+
+.form-sub__plan-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-sub__plan-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--sub-title);
+}
+
+.form-sub__plan-desc {
+  font-size: 0.75rem;
+  color: var(--sub-text-light);
+}
+
+.form-sub__plan-price {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--sub-title);
+}
+
+.form-sub__plan-card:has(.form-sub__plan-radio:checked) {
+  border-color: var(--sub-primary);
+  background-color: #f5f3ff;
+}
+
+.form-sub__submit {
+  padding-block: 0.75rem;
+  background-color: var(--sub-primary);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-block-start: 0.5rem;
+}
+
+.form-sub__submit:hover {
+  background-color: var(--sub-primary-hover);
+}

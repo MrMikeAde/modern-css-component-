@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-feedback">
+    <header class="form-feedback__header">
+      <h2 class="form-feedback__title">Your Feedback</h2>
+      <p class="form-feedback__subtitle">Help us improve. Please rate your general experience below.</p>
+    </header>
+
+    <form class="form-feedback__body" action="#" method="POST" novalidate>
+      <div class="form-feedback__field">
+        <label class="form-feedback__label">Service Experience</label>
+        <div class="form-feedback__rating">
+          <input type="radio" id="star-5" name="stars" value="5" class="form-feedback__star-radio">
+          <label for="star-5" class="form-feedback__star-label" title="Excellent">★</label>
+
+          <input type="radio" id="star-4" name="stars" value="4" class="form-feedback__star-radio">
+          <label for="star-4" class="form-feedback__star-label" title="Good">★</label>
+
+          <input type="radio" id="star-3" name="stars" value="3" class="form-feedback__star-radio">
+          <label for="star-3" class="form-feedback__star-label" title="Average">★</label>
+
+          <input type="radio" id="star-2" name="stars" value="2" class="form-feedback__star-radio">
+          <label for="star-2" class="form-feedback__star-label" title="Poor">★</label>
+
+          <input type="radio" id="star-1" name="stars" value="1" class="form-feedback__star-radio" checked>
+          <label for="star-1" class="form-feedback__star-label" title="Very Poor">★</label>
+        </div>
+      </div>
+
+      <div class="form-feedback__field">
+        <label class="form-feedback__label" for="feed-text">Additional comments</label>
+        <textarea class="form-feedback__textarea" id="feed-text" name="comments" rows="4" placeholder="How can we make things even better?"></textarea>
+      </div>
+
+      <button class="form-feedback__submit" type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+</body>
+</html>

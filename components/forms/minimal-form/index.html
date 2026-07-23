@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-minimal">
+    <header class="form-minimal__header">
+      <h2 class="form-minimal__title">Minimalism</h2>
+      <p class="form-minimal__subtitle">Editorial layout utilizing generous typography spacings.</p>
+    </header>
+
+    <form class="form-minimal__body" action="#" method="POST" novalidate>
+      <div class="form-minimal__field">
+        <label class="form-minimal__label" for="mn-email">Your email</label>
+        <input class="form-minimal__input" type="email" id="mn-email" required placeholder="Enter active email...">
+      </div>
+
+      <button class="form-minimal__submit" type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>

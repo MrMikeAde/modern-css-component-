@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-survey">
+    <header class="form-survey__header">
+      <h2 class="form-survey__title">User Sentiment Survey</h2>
+      <p class="form-survey__subtitle">Please assist our team by evaluating your research usage parameters.</p>
+    </header>
+
+    <form class="form-survey__body" action="#" method="POST" novalidate>
+      <div class="form-survey__field">
+        <label class="form-survey__label" for="surv-platform">Primary usage platform</label>
+        <select class="form-survey__select" id="surv-platform" name="platform" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="desktop">Mac / Windows Desktop</option>
+          <option value="mobile">iOS / Android Mobile Device</option>
+          <option value="tablet">iPad / Android Tablet</option>
+        </select>
+      </div>
+
+      <div class="form-survey__field">
+        <label class="form-survey__label">How frequently do you leverage our APIs?</label>
+        <div class="form-survey__radios">
+          <label class="form-survey__radio-container">
+            <input class="form-survey__radio-input" type="radio" name="freq" value="daily" checked>
+            <span class="form-survey__radio-custom"></span>
+            <span class="form-survey__radio-text">Daily</span>
+          </label>
+          <label class="form-survey__radio-container">
+            <input class="form-survey__radio-input" type="radio" name="freq" value="weekly">
+            <span class="form-survey__radio-custom"></span>
+            <span class="form-survey__radio-text">Weekly</span>
+          </label>
+          <label class="form-survey__radio-container">
+            <input class="form-survey__radio-input" type="radio" name="freq" value="monthly">
+            <span class="form-survey__radio-custom"></span>
+            <span class="form-survey__radio-text">Monthly</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="form-survey__submit" type="submit">Submit Survey</button>
+    </form>
+  </div>
+
+</body>
+</html>

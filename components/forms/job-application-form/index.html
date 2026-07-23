@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-job">
+    <header class="form-job__header">
+      <h2 class="form-job__title">Apply for Position</h2>
+      <p class="form-job__subtitle">Join our engineering department. Please fill out your details.</p>
+    </header>
+
+    <form class="form-job__body" action="#" method="POST" enctype="multipart/form-file" novalidate>
+      <div class="form-job__section">
+        <h3 class="form-job__section-title">Personal Details</h3>
+        <div class="form-job__row">
+          <div class="form-job__field">
+            <label class="form-job__label" for="jb-name">Full Name</label>
+            <input class="form-job__input" type="text" id="jb-name" required placeholder="Alex Mercer">
+          </div>
+          <div class="form-job__field">
+            <label class="form-job__label" for="jb-email">Email Address</label>
+            <input class="form-job__input" type="email" id="jb-email" required placeholder="alex@gmail.com">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-job__section">
+        <h3 class="form-job__section-title">Documents</h3>
+        <div class="form-job__field">
+          <label class="form-job__label" for="jb-resume">Upload CV / Resume</label>
+          <input class="form-job__input" type="file" id="jb-resume" required accept=".pdf,.docx">
+        </div>
+      </div>
+
+      <button class="form-job__submit" type="submit">Submit Candidate Profile</button>
+    </form>
+  </div>
+
+</body>
+</html>

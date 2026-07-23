@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Settings Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-profile">
+    <header class="form-profile__header">
+      <h2 class="form-profile__title">Profile Settings</h2>
+      <p class="form-profile__subtitle">Configure your public-facing coordinates.</p>
+    </header>
+
+    <form class="form-profile__body" action="#" method="POST" novalidate>
+      <div class="form-profile__avatar-section">
+        <div class="form-profile__avatar-preview">
+          <img class="form-profile__avatar-img" src="https://picsum.photos/100/100" alt="Avatar Preview">
+        </div>
+        <div class="form-profile__avatar-actions">
+          <label class="form-profile__avatar-btn" for="prof-avatar-file">Upload New Photo</label>
+          <input type="file" id="prof-avatar-file" class="sr-only" accept="image/*">
+          <span class="form-profile__avatar-help">JPG, GIF or PNG. Max size of 800K</span>
+        </div>
+      </div>
+
+      <div class="form-profile__field">
+        <label class="form-profile__label" for="prof-username">Username</label>
+        <input class="form-profile__input" type="text" id="prof-username" required value="sarah_jenkins">
+      </div>
+
+      <div class="form-profile__field">
+        <label class="form-profile__label" for="prof-bio">Bio</label>
+        <textarea class="form-profile__textarea" id="prof-bio" rows="4" placeholder="I am a software designer based in Seattle..."></textarea>
+      </div>
+
+      <button class="form-profile__submit" type="submit">Save Changes</button>
+    </form>
+  </div>
+
+</body>
+</html>

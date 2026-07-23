@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Signup - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-newsletter">
+    <header class="form-newsletter__header">
+      <h2 class="form-newsletter__title">Join our newsletter</h2>
+      <p class="form-newsletter__subtitle">Get product updates, company news, and modern tips delivered straight to your inbox.</p>
+    </header>
+
+    <form class="form-newsletter__body" action="#" method="POST" novalidate>
+      <div class="form-newsletter__field">
+        <label class="form-newsletter__label sr-only" for="news-email">Email Address</label>
+        <input class="form-newsletter__input" type="email" id="news-email" name="email" placeholder="Enter your email" required autocomplete="email">
+        <button class="form-newsletter__submit" type="submit">Subscribe</button>
+      </div>
+      <span class="form-newsletter__error-message" role="alert">Please enter a valid email address.</span>
+    </form>
+
+    <p class="form-newsletter__disclaimer">We care about your data. Unsubscribe at any time.</p>
+  </div>
+
+</body>
+</html>

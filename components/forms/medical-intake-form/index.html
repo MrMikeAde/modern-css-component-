@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Intake Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-medical">
+    <header class="form-medical__header">
+      <h2 class="form-medical__title">Patient Intake Registry</h2>
+      <p class="form-medical__subtitle">Please input your diagnostic history coordinates securely.</p>
+    </header>
+
+    <form class="form-medical__body" action="#" method="POST" novalidate>
+      <div class="form-medical__section">
+        <h3 class="form-medical__section-title">Emergency Contact</h3>
+        <div class="form-medical__grid">
+          <div class="form-medical__field">
+            <label class="form-medical__label" for="med-contact-name">Contact Name</label>
+            <input class="form-medical__input" type="text" id="med-contact-name" placeholder="Johnathan Miller" required>
+          </div>
+          <div class="form-medical__field">
+            <label class="form-medical__label" for="med-contact-tel">Telephone Number</label>
+            <input class="form-medical__input" type="tel" id="med-contact-tel" placeholder="555-0199-232" required>
+          </div>
+        </div>
+      </div>
+
+      <button class="form-medical__submit" type="submit">Submit Diagnostics</button>
+    </form>
+  </div>
+
+</body>
+</html>
