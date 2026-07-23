@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neumorphism Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+    body { background-color: #e0e5ec; }
+  </style>
+</head>
+<body>
+
+  <div class="form-neumorphism">
+    <header class="form-neumorphism__header">
+      <h2 class="form-neumorphism__title">Neumorphism</h2>
+      <p class="form-neumorphism__subtitle">Observe modern double soft-shadow tactile interfaces.</p>
+    </header>
+
+    <form class="form-neumorphism__body" action="#" method="POST" novalidate>
+      <div class="form-neumorphism__field">
+        <label class="form-neumorphism__label" for="nm-input">Enter text</label>
+        <input class="form-neumorphism__input" type="text" id="nm-input" required placeholder="Soft UI typing...">
+      </div>
+
+      <button class="form-neumorphism__submit" type="submit">Press Button</button>
+    </form>
+  </div>
+
+</body>
+</html>

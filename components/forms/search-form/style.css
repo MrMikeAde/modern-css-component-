@@ -1,0 +1,119 @@
+:root {
+  --search-bg: #ffffff;
+  --search-border: #e2e8f0;
+  --search-text: #334155;
+  --search-text-light: #64748b;
+  --search-title: #0f172a;
+  --search-primary: #14b8a6;
+  --search-primary-hover: #0d9488;
+  --search-primary-light: #ccfbf1;
+  --search-radius: 12px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.form-search {
+  inline-size: 100%;
+  max-inline-size: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-search__body {
+  inline-size: 100%;
+}
+
+.form-search__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--search-bg);
+  border: 2px solid var(--search-border);
+  border-radius: var(--search-radius);
+  padding: 6px;
+  transition: all 0.2s ease;
+}
+
+.form-search__field:focus-within {
+  border-color: var(--search-primary);
+  box-shadow: 0 0 0 4px var(--search-primary-light);
+}
+
+.form-search__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--search-text-light);
+  margin-inline-start: 10px;
+  flex-shrink: 0;
+}
+
+.form-search__input {
+  flex-grow: 1;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  border: none;
+  font-size: 0.925rem;
+  color: var(--search-title);
+  background-color: transparent;
+  outline: none;
+}
+
+.form-search__input::placeholder {
+  color: var(--search-text-light);
+  opacity: 0.7;
+}
+
+.form-search__submit {
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  background-color: var(--search-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: calc(var(--search-radius) - 4px);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-search__submit:hover {
+  background-color: var(--search-primary-hover);
+}
+
+.form-search__shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  padding-inline-start: 12px;
+  font-size: 0.825rem;
+  color: var(--search-text-light);
+}
+
+.form-search__shortcut-title {
+  font-weight: 500;
+}
+
+.form-search__shortcut-link {
+  color: var(--search-primary-hover);
+  text-decoration: none;
+  background-color: #f1f5f9;
+  padding-block: 0.125rem;
+  padding-inline: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.form-search__shortcut-link:hover {
+  background-color: var(--search-primary-light);
+}

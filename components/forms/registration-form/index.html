@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-register">
+    <header class="form-register__header">
+      <h2 class="form-register__title">Create Account</h2>
+      <p class="form-register__subtitle">Join our platform today and start building.</p>
+    </header>
+
+    <form class="form-register__body" action="#" method="POST" novalidate>
+      <div class="form-register__row">
+        <div class="form-register__field">
+          <label class="form-register__label" for="reg-firstname">First Name <span class="form-register__required" aria-hidden="true">*</span></label>
+          <input class="form-register__input" type="text" id="reg-firstname" name="firstname" placeholder="Jane" required autocomplete="given-name">
+        </div>
+        <div class="form-register__field">
+          <label class="form-register__label" for="reg-lastname">Last Name <span class="form-register__required" aria-hidden="true">*</span></label>
+          <input class="form-register__input" type="text" id="reg-lastname" name="lastname" placeholder="Doe" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="form-register__field">
+        <label class="form-register__label" for="reg-email">Email Address <span class="form-register__required" aria-hidden="true">*</span></label>
+        <input class="form-register__input" type="email" id="reg-email" name="email" placeholder="jane.doe@example.com" required autocomplete="email">
+        <span class="form-register__error-message" role="alert">Please enter a valid email address.</span>
+      </div>
+
+      <div class="form-register__field">
+        <label class="form-register__label" for="reg-password">Password <span class="form-register__required" aria-hidden="true">*</span></label>
+        <input class="form-register__input" type="password" id="reg-password" name="password" placeholder="Min. 8 characters" required autocomplete="new-password" minlength="8">
+        <span class="form-register__error-message" role="alert">Password must be at least 8 characters.</span>
+      </div>
+
+      <div class="form-register__options">
+        <label class="form-register__checkbox-container">
+          <input class="form-register__checkbox-input" type="checkbox" name="terms" required>
+          <span class="form-register__checkbox-custom"></span>
+          <span class="form-register__checkbox-label">I agree to the <a href="#terms" class="form-register__link">Terms of Service</a> and <a href="#privacy" class="form-register__link">Privacy Policy</a></span>
+        </label>
+      </div>
+
+      <button class="form-register__submit" type="submit">Create Free Account</button>
+    </form>
+
+    <footer class="form-register__footer">
+      <p class="form-register__footer-text">Already have an account? <a href="../login-form" class="form-register__link">Sign in</a></p>
+    </footer>
+  </div>
+
+</body>
+</html>

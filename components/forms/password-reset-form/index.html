@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Reset Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-reset">
+    <header class="form-reset__header">
+      <h2 class="form-reset__title">Reset Password</h2>
+      <p class="form-reset__subtitle">Enter your registered email address below. We will dispatch a secure recovery token to your inbox.</p>
+    </header>
+
+    <form class="form-reset__body" action="#" method="POST" novalidate>
+      <div class="form-reset__field">
+        <label class="form-reset__label" for="reset-email">Your Email Address</label>
+        <input class="form-reset__input" type="email" id="reset-email" name="email" placeholder="dev@example.com" required>
+        <span class="form-reset__error-message" role="alert">Please enter a valid active address.</span>
+      </div>
+
+      <button class="form-reset__submit" type="submit">Send Recovery Instructions</button>
+    </form>
+
+    <footer class="form-reset__footer">
+      <a href="../login-form" class="form-reset__link">Back to secure Sign In</a>
+    </footer>
+  </div>
+
+</body>
+</html>

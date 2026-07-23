@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Ticket Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-support">
+    <header class="form-support__header">
+      <h2 class="form-support__title">Submit Support Ticket</h2>
+      <p class="form-support__subtitle">We're here to help. Fill out the form below to open a ticket.</p>
+    </header>
+
+    <form class="form-support__body" action="#" method="POST" novalidate>
+      <div class="form-support__field">
+        <label class="form-support__label" for="sup-category">Support Category</label>
+        <select class="form-support__select" id="sup-category" name="category" required>
+          <option value="" disabled selected>Choose a category</option>
+          <option value="billing">Billing & Subscriptions</option>
+          <option value="tech">Technical Infrastructure</option>
+          <option value="account">Account Access</option>
+        </select>
+      </div>
+
+      <div class="form-support__field">
+        <label class="form-support__label" for="sup-text">Describe the Issue</label>
+        <textarea class="form-support__textarea" id="sup-text" rows="5" required placeholder="Provide as much detail as possible..."></textarea>
+      </div>
+
+      <button class="form-support__submit" type="submit">Submit Support Request</button>
+    </form>
+  </div>
+
+</body>
+</html>

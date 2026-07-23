@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-payment">
+    <header class="form-payment__header">
+      <h2 class="form-payment__title">Payment Information</h2>
+      <p class="form-payment__subtitle">Enter your secure credit card details below.</p>
+    </header>
+
+    <div class="form-payment__card-preview">
+      <div class="form-payment__chip"></div>
+      <div class="form-payment__card-number">•••• •••• •••• ••••</div>
+      <div class="form-payment__card-row">
+        <div>
+          <span class="form-payment__card-label">Card Holder</span>
+          <div class="form-payment__card-value">John Doe</div>
+        </div>
+        <div>
+          <span class="form-payment__card-label">Expires</span>
+          <div class="form-payment__card-value">MM/YY</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="form-payment__body" action="#" method="POST" novalidate>
+      <div class="form-payment__field">
+        <label class="form-payment__label" for="pay-name">Cardholder Name</label>
+        <input class="form-payment__input" type="text" id="pay-name" name="cardname" required placeholder="John Doe">
+      </div>
+
+      <div class="form-payment__field">
+        <label class="form-payment__label" for="pay-num">Card Number</label>
+        <input class="form-payment__input" type="text" id="pay-num" name="cardnum" pattern="[0-9]{16}" required placeholder="4111 2222 3333 4444" autocomplete="cc-number">
+      </div>
+
+      <div class="form-payment__row">
+        <div class="form-payment__field">
+          <label class="form-payment__label" for="pay-expiry">Expiration Date</label>
+          <input class="form-payment__input" type="text" id="pay-expiry" name="cardexpiry" placeholder="MM/YY" required autocomplete="cc-exp">
+        </div>
+        <div class="form-payment__field">
+          <label class="form-payment__label" for="pay-cvv">CVV / CVC</label>
+          <input class="form-payment__input" type="password" id="pay-cvv" name="cardcvv" pattern="[0-9]{3,4}" required placeholder="•••" autocomplete="cc-csc">
+        </div>
+      </div>
+
+      <button class="form-payment__submit" type="submit">Pay $49.00 Securely</button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium SaaS Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-saas">
+    <header class="form-saas__header">
+      <h2 class="form-saas__title">Configure Enterprise Sandbox</h2>
+      <p class="form-saas__subtitle">Deploy top tier cloud cluster services to your environment.</p>
+    </header>
+
+    <form class="form-saas__body" action="#" method="POST" novalidate>
+      <div class="form-saas__field">
+        <label class="form-saas__label" for="ss-cluster">Cluster Identity</label>
+        <input class="form-saas__input" type="text" id="ss-cluster" required placeholder="us-east-cluster-01">
+      </div>
+
+      <button class="form-saas__submit" type="submit">Provision Sandbox</button>
+    </form>
+  </div>
+
+</body>
+</html>

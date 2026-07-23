@@ -1,0 +1,229 @@
+:root {
+  --reg-bg: #ffffff;
+  --reg-border: #e2e8f0;
+  --reg-text: #334155;
+  --reg-text-light: #64748b;
+  --reg-title: #0f172a;
+  --reg-primary: #2563eb;
+  --reg-primary-hover: #1d4ed8;
+  --reg-primary-light: #dbeafe;
+  --reg-radius: 12px;
+  --reg-error: #ef4444;
+}
+
+.form-register {
+  background-color: var(--reg-bg);
+  border: 1px solid var(--reg-border);
+  border-radius: var(--reg-radius);
+  padding: 2.5rem;
+  inline-size: 100%;
+  max-inline-size: 500px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-register__header {
+  text-align: center;
+}
+
+.form-register__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--reg-title);
+  margin-block-end: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.form-register__subtitle {
+  font-size: 0.875rem;
+  color: var(--reg-text-light);
+  margin: 0;
+}
+
+.form-register__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-register__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .form-register__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-register__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-register__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--reg-title);
+}
+
+.form-register__required {
+  color: var(--reg-error);
+}
+
+.form-register__input {
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--reg-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  color: var(--reg-title);
+  background-color: #fff;
+}
+
+.form-register__input::placeholder {
+  color: var(--reg-text-light);
+  opacity: 0.6;
+}
+
+.form-register__input:hover {
+  border-color: #cbd5e1;
+}
+
+.form-register__input:focus {
+  outline: none;
+  border-color: var(--reg-primary);
+  box-shadow: 0 0 0 3px var(--reg-primary-light);
+}
+
+.form-register__input:invalid:not(:placeholder-shown) {
+  border-color: var(--reg-error);
+}
+
+.form-register__input:invalid:not(:placeholder-shown) + .form-register__error-message {
+  display: block;
+}
+
+.form-register__error-message {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--reg-error);
+  margin-block-start: 0.25rem;
+}
+
+.form-register__link {
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--reg-primary);
+  text-decoration: none;
+}
+
+.form-register__link:hover {
+  text-decoration: underline;
+}
+
+.form-register__options {
+  display: flex;
+  align-items: center;
+}
+
+.form-register__checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-register__checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.form-register__checkbox-custom {
+  position: relative;
+  flex-shrink: 0;
+  block-size: 18px;
+  inline-size: 18px;
+  background-color: #fff;
+  border: 1px solid var(--reg-border);
+  border-radius: 4px;
+  margin-block-start: 2px;
+  transition: all 0.2s ease;
+}
+
+.form-register__checkbox-container:hover .form-register__checkbox-custom {
+  border-color: #cbd5e1;
+}
+
+.form-register__checkbox-input:checked ~ .form-register__checkbox-custom {
+  background-color: var(--reg-primary);
+  border-color: var(--reg-primary);
+}
+
+.form-register__checkbox-custom::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form-register__checkbox-input:checked ~ .form-register__checkbox-custom::after {
+  display: block;
+}
+
+.form-register__checkbox-label {
+  font-size: 0.825rem;
+  color: var(--reg-text-light);
+  line-height: 1.4;
+}
+
+.form-register__submit {
+  padding-block: 0.75rem;
+  padding-inline: 1.5rem;
+  background-color: var(--reg-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-block-start: 0.5rem;
+}
+
+.form-register__submit:hover {
+  background-color: var(--reg-primary-hover);
+}
+
+.form-register__submit:focus-visible {
+  outline: 2px solid var(--reg-primary);
+  outline-offset: 2px;
+}
+
+.form-register__footer {
+  border-top: 1px solid var(--reg-border);
+  padding-block-start: 1.25rem;
+  text-align: center;
+}
+
+.form-register__footer-text {
+  font-size: 0.875rem;
+  color: var(--reg-text-light);
+  margin: 0;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+    body { background: linear-gradient(135deg, #0f172a, #1e1b4b, #311b92); }
+  </style>
+</head>
+<body>
+
+  <div class="form-glass">
+    <header class="form-glass__header">
+      <h2 class="form-glass__title">Glassmorphism</h2>
+      <p class="form-glass__subtitle">Experience hardware accelerated frosted glass effects.</p>
+    </header>
+
+    <form class="form-glass__body" action="#" method="POST" novalidate>
+      <div class="form-glass__field">
+        <label class="form-glass__label" for="gl-email">Email Address</label>
+        <input class="form-glass__input" type="email" id="gl-email" required placeholder="name@domain.com">
+      </div>
+
+      <button class="form-glass__submit" type="submit">Submit Glass Action</button>
+    </form>
+  </div>
+
+</body>
+</html>

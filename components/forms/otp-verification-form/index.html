@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification Form - Modern CSS Components</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Ensure glassmorphic and neumorphic elements look realistic with contextual backgrounds */
+
+  </style>
+</head>
+<body>
+
+  <div class="form-otp">
+    <header class="form-otp__header">
+      <h2 class="form-otp__title">Security Code</h2>
+      <p class="form-otp__subtitle">We dispatched an active 4-digit security code to your registered mobile. Please populate it below.</p>
+    </header>
+
+    <form class="form-otp__body" action="#" method="POST" autocomplete="off" novalidate>
+      <div class="form-otp__digits">
+        <label class="sr-only" for="otp-1">Digit 1</label>
+        <input class="form-otp__input" type="text" id="otp-1" name="otp1" pattern="[0-9]" maxlength="1" required inputmode="numeric">
+
+        <label class="sr-only" for="otp-2">Digit 2</label>
+        <input class="form-otp__input" type="text" id="otp-2" name="otp2" pattern="[0-9]" maxlength="1" required inputmode="numeric">
+
+        <label class="sr-only" for="otp-3">Digit 3</label>
+        <input class="form-otp__input" type="text" id="otp-3" name="otp3" pattern="[0-9]" maxlength="1" required inputmode="numeric">
+
+        <label class="sr-only" for="otp-4">Digit 4</label>
+        <input class="form-otp__input" type="text" id="otp-4" name="otp4" pattern="[0-9]" maxlength="1" required inputmode="numeric">
+      </div>
+
+      <button class="form-otp__submit" type="submit">Verify Secure Code</button>
+    </form>
+
+    <div class="form-otp__footer">
+      <p class="form-otp__text">Didn't receive the text? <a href="#resend" class="form-otp__link">Resend secure SMS</a></p>
+    </div>
+  </div>
+
+</body>
+</html>
