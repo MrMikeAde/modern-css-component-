@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern CSS Components - Library Gallery</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-light: #64748b;
+      --radius-lg: 16px;
+      --radius-md: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .header {
+      text-align: center;
+      padding-block: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header__title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-block-end: 0.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header__subtitle {
+      font-size: 1.125rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .category-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      border-color: #cbd5e1;
+    }
+
+    .category-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-block-end: 1rem;
+    }
+
+    .category-card__badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background-color: #e0e7ff;
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+    }
+
+    .category-card__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--bg-dark);
+    }
+
+    .category-card__desc {
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+
+    .component-list {
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 480px) {
+      .component-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .component-list__item a {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .component-list__item a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    .component-list__item a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      padding-block: 2rem;
+      color: var(--text-light);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header">
+      <h1 class="header__title">Modern CSS Components</h1>
+      <p class="header__subtitle">A production-ready, highly educational library of semantic HTML5 and modern CSS3 copy-paste elements.</p>
+    </header>
+
+    <main class="categories-grid">
+      <!-- Buttons Category Card -->
+      <section class="category-card">
+        <header class="category-card__header">
+          <h2 class="category-card__title">Buttons</h2>
+          <span class="category-card__badge">Complete (25)</span>
+        </header>
+        <p class="category-card__desc">A collection of 25 beautifully designed, highly interactive, accessible, and responsive button triggers.</p>
+        <ul class="component-list">
+          <li class="component-list__item"><a href="components/buttons/primary-button/index.html">Primary Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/secondary-button/index.html">Secondary Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/outline-button/index.html">Outline Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/ghost-button/index.html">Ghost Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/gradient-button/index.html">Gradient Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/glassmorphism-button/index.html">Glassmorphism Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/neumorphism-button/index.html">Neumorphism Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/icon-button/index.html">Icon Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/rounded-pill-button/index.html">Rounded Pill Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/animated-border-button/index.html">Animated Border Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/shine-hover-button/index.html">Shine Hover Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/ripple-style-button/index.html">Ripple Style Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/loading-button/index.html">Loading Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/success-button/index.html">Success Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/danger-button/index.html">Danger Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/warning-button/index.html">Warning Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/floating-action-button/index.html">Floating Action Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/social-login-button/index.html">Social Login Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/3d-press-button/index.html">3D Press Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/minimal-button/index.html">Minimal Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/underline-hover-button/index.html">Underline Hover Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/split-color-button/index.html">Split Color Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/dark-mode-button/index.html">Dark Mode Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/soft-ui-button/index.html">Soft UI Button</a></li>
+          <li class="component-list__item"><a href="components/buttons/premium-cta-button/index.html">Premium CTA Button</a></li>
+        </ul>
+      </section>
+
+      <!-- Cards Category Card -->
+      <section class="category-card">
+        <header class="category-card__header">
+          <h2 class="category-card__title">Cards</h2>
+          <span class="category-card__badge">Complete (30)</span>
+        </header>
+        <p class="category-card__desc">A production-ready collection of 30 cards displaying structured content elegantly across SaaS, dashboards, and landing pages.</p>
+        <ul class="component-list">
+          <li class="component-list__item"><a href="components/cards/basic-card/index.html">Basic Card</a></li>
+          <li class="component-list__item"><a href="components/cards/product-card/index.html">Product Card</a></li>
+          <li class="component-list__item"><a href="components/cards/blog-post-card/index.html">Blog Post Card</a></li>
+          <li class="component-list__item"><a href="components/cards/pricing-card/index.html">Pricing Card</a></li>
+          <li class="component-list__item"><a href="components/cards/user-profile-card/index.html">User Profile Card</a></li>
+          <li class="component-list__item"><a href="components/cards/team-member-card/index.html">Team Member Card</a></li>
+          <li class="component-list__item"><a href="components/cards/testimonial-card/index.html">Testimonial Card</a></li>
+          <li class="component-list__item"><a href="components/cards/feature-card/index.html">Feature Card</a></li>
+          <li class="component-list__item"><a href="components/cards/service-card/index.html">Service Card</a></li>
+          <li class="component-list__item"><a href="components/cards/statistics-card/index.html">Statistics Card</a></li>
+          <li class="component-list__item"><a href="components/cards/dashboard-summary-card/index.html">Dashboard Summary</a></li>
+          <li class="component-list__item"><a href="components/cards/event-card/index.html">Event Card</a></li>
+          <li class="component-list__item"><a href="components/cards/course-card/index.html">Course Card</a></li>
+          <li class="component-list__item"><a href="components/cards/job-listing-card/index.html">Job Listing Card</a></li>
+          <li class="component-list__item"><a href="components/cards/property-listing-card/index.html">Property Listing</a></li>
+          <li class="component-list__item"><a href="components/cards/restaurant-card/index.html">Restaurant Card</a></li>
+          <li class="component-list__item"><a href="components/cards/travel-destination-card/index.html">Travel Destination</a></li>
+          <li class="component-list__item"><a href="components/cards/e-commerce-product-card/index.html">E-comm Product Card</a></li>
+          <li class="component-list__item"><a href="components/cards/shopping-cart-card/index.html">Shopping Cart Card</a></li>
+          <li class="component-list__item"><a href="components/cards/music-album-card/index.html">Music Album Card</a></li>
+          <li class="component-list__item"><a href="components/cards/video-thumbnail-card/index.html">Video Thumbnail</a></li>
+          <li class="component-list__item"><a href="components/cards/news-card/index.html">News Card</a></li>
+          <li class="component-list__item"><a href="components/cards/portfolio-project-card/index.html">Portfolio Project</a></li>
+          <li class="component-list__item"><a href="components/cards/nft-showcase-card/index.html">NFT Showcase Card</a></li>
+          <li class="component-list__item"><a href="components/cards/glassmorphism-card/index.html">Glassmorphism Card</a></li>
+          <li class="component-list__item"><a href="components/cards/neumorphism-card/index.html">Neumorphism Card</a></li>
+          <li class="component-list__item"><a href="components/cards/minimal-card/index.html">Minimal Card</a></li>
+          <li class="component-list__item"><a href="components/cards/gradient-card/index.html">Gradient Card</a></li>
+          <li class="component-list__item"><a href="components/cards/dark-theme-card/index.html">Dark Theme Card</a></li>
+          <li class="component-list__item"><a href="components/cards/premium-saas-feature-card/index.html">Premium SaaS Card</a></li>
+        </ul>
+      </section>
+
+      <!-- Forms Category Card -->
+      <section class="category-card">
+        <header class="category-card__header">
+          <h2 class="category-card__title">Forms</h2>
+          <span class="category-card__badge">Complete (25)</span>
+        </header>
+        <p class="category-card__desc">A premium collection of 25 fully responsive, accessible, keyboard-friendly forms for all common user interactions, designed strictly using HTML5 & CSS3.</p>
+        <ul class="component-list">
+          <li class="component-list__item"><a href="components/forms/login-form/index.html">1. Login Form</a></li>
+          <li class="component-list__item"><a href="components/forms/registration-form/index.html">2. Registration Form</a></li>
+          <li class="component-list__item"><a href="components/forms/contact-form/index.html">3. Contact Form</a></li>
+          <li class="component-list__item"><a href="components/forms/newsletter-signup/index.html">4. Newsletter Signup</a></li>
+          <li class="component-list__item"><a href="components/forms/search-form/index.html">5. Search Form</a></li>
+          <li class="component-list__item"><a href="components/forms/checkout-form/index.html">6. Checkout Form</a></li>
+          <li class="component-list__item"><a href="components/forms/payment-form/index.html">7. Payment Form</a></li>
+          <li class="component-list__item"><a href="components/forms/multi-column-form/index.html">8. Multi-Column Form</a></li>
+          <li class="component-list__item"><a href="components/forms/profile-settings-form/index.html">9. Profile Settings Form</a></li>
+          <li class="component-list__item"><a href="components/forms/password-reset-form/index.html">10. Password Reset Form</a></li>
+          <li class="component-list__item"><a href="components/forms/otp-verification-form/index.html">11. OTP Verification Form</a></li>
+          <li class="component-list__item"><a href="components/forms/file-upload-form/index.html">12. File Upload Form</a></li>
+          <li class="component-list__item"><a href="components/forms/appointment-booking-form/index.html">13. Appointment Booking</a></li>
+          <li class="component-list__item"><a href="components/forms/feedback-form/index.html">14. Feedback Form</a></li>
+          <li class="component-list__item"><a href="components/forms/survey-form/index.html">15. Survey Form</a></li>
+          <li class="component-list__item"><a href="components/forms/job-application-form/index.html">16. Job Application Form</a></li>
+          <li class="component-list__item"><a href="components/forms/event-registration-form/index.html">17. Event Registration Form</a></li>
+          <li class="component-list__item"><a href="components/forms/medical-intake-form/index.html">18. Medical Intake Form</a></li>
+          <li class="component-list__item"><a href="components/forms/support-ticket-form/index.html">19. Support Ticket Form</a></li>
+          <li class="component-list__item"><a href="components/forms/subscription-form/index.html">20. Subscription Form</a></li>
+          <li class="component-list__item"><a href="components/forms/floating-label-form/index.html">21. Floating Label Form</a></li>
+          <li class="component-list__item"><a href="components/forms/glassmorphism-form/index.html">22. Glassmorphism Form</a></li>
+          <li class="component-list__item"><a href="components/forms/neumorphism-form/index.html">23. Neumorphism Form</a></li>
+          <li class="component-list__item"><a href="components/forms/minimal-form/index.html">24. Minimal Form</a></li>
+          <li class="component-list__item"><a href="components/forms/premium-saas-form/index.html">25. Premium SaaS Form</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025 Modern CSS Components. All rights reserved.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
