@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern CSS Components - Premium Pure HTML & CSS Catalog</title>
+  <meta name="description" content="A production-ready, highly educational, and beautifully designed library of modern HTML5 & CSS3 UI components. No JavaScript, no frameworks.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- Skip Link for Keyboard Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-icon" aria-hidden="true">🎨</span>
+        <span class="logo-text">Modern CSS <span class="logo-highlight">Components</span></span>
+      </div>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="docs/getting-started.md" class="nav-link">Getting Started</a></li>
+          <li><a href="docs/coding-standards.md" class="nav-link">Coding Standards</a></li>
+          <li><a href="docs/accessibility.md" class="nav-link">Accessibility</a></li>
+          <li><a href="docs/browser-support.md" class="nav-link">Browser Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <span class="hero-badge">No JavaScript • No Frameworks • Pure CSS</span>
+        <h1 class="hero-title">Pristine HTML5 & CSS3 Component Library</h1>
+        <p class="hero-subtitle">
+          An open-source catalog of production-ready, modular, copy-paste-ready elements leveraging modern CSS specs to the absolute fullest—including Grid, Flexbox, Container Queries, and Logical Properties.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalog" class="cta-primary">Browse Catalog</a>
+          <a href="docs/getting-started.md" class="cta-secondary">Read Guidelines</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" aria-label="Project Statistics">
+      <div class="stats-container">
+        <div class="stat-card">
+          <span class="stat-number">20</span>
+          <span class="stat-label">Core Categories</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">80</span>
+          <span class="stat-label">Pristine Components</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Accessible (a11y)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Dependencies</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Section with Pure CSS Filtering -->
+    <section id="catalog" class="catalog-section" aria-labelledby="catalog-title">
+      <div class="catalog-container">
+        <div class="catalog-header">
+          <h2 id="catalog-title" class="section-title">Explore the Component Catalog</h2>
+          <p class="section-subtitle">Click a tab to filter by completion status, then explore detailed subcomponents.</p>
+        </div>
+
+        <!-- Pure CSS Filtering via Hidden Radio Buttons -->
+        <div class="css-filter-system">
+          <input type="radio" id="filter-all" name="catalog-filter" checked class="filter-radio sr-only">
+          <input type="radio" id="filter-completed" name="catalog-filter" class="filter-radio sr-only">
+          <input type="radio" id="filter-upcoming" name="catalog-filter" class="filter-radio sr-only">
+
+          <!-- Filter Labels acting as Tabs -->
+          <div class="filter-tabs" role="tablist" aria-label="Filter Components">
+            <label for="filter-all" class="filter-tab-label" role="tab" tabindex="0">All Categories</label>
+            <label for="filter-completed" class="filter-tab-label" role="tab" tabindex="0">Completed (80)</label>
+            <label for="filter-upcoming" class="filter-tab-label" role="tab" tabindex="0">Upcoming (17)</label>
+          </div>
+
+          <!-- Component Grid Wrapper -->
+          <div class="categories-grid">
+
+            <!-- 1. BUTTONS CATEGORY (COMPLETED) -->
+            <div class="category-card state-completed" data-category="buttons">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-green">Completed</span>
+                  <h3 class="category-name">Buttons</h3>
+                </div>
+                <span class="category-count">25 Components</span>
+              </div>
+              <p class="category-desc">Tactile, highly responsive, and beautiful triggers utilizing CSS custom variables, gradients, neon glows, glassmorphism, and 3D effects.</p>
+
+              <details class="category-details">
+                <summary class="details-summary">View all 25 Buttons</summary>
+                <div class="component-links-grid">
+                  <a href="components/buttons/primary-button/index.html" class="comp-link">Primary Button</a>
+                  <a href="components/buttons/secondary-button/index.html" class="comp-link">Secondary Button</a>
+                  <a href="components/buttons/outline-button/index.html" class="comp-link">Outline Button</a>
+                  <a href="components/buttons/ghost-button/index.html" class="comp-link">Ghost Button</a>
+                  <a href="components/buttons/gradient-button/index.html" class="comp-link">Gradient Button</a>
+                  <a href="components/buttons/glassmorphism-button/index.html" class="comp-link">Glassmorphism</a>
+                  <a href="components/buttons/neumorphism-button/index.html" class="comp-link">Neumorphism</a>
+                  <a href="components/buttons/icon-button/index.html" class="comp-link">Icon Button</a>
+                  <a href="components/buttons/rounded-pill-button/index.html" class="comp-link">Rounded Pill</a>
+                  <a href="components/buttons/animated-border-button/index.html" class="comp-link">Animated Border</a>
+                  <a href="components/buttons/shine-hover-button/index.html" class="comp-link">Shine Hover</a>
+                  <a href="components/buttons/ripple-style-button/index.html" class="comp-link">Ripple Style</a>
+                  <a href="components/buttons/loading-button/index.html" class="comp-link">Loading Button</a>
+                  <a href="components/buttons/success-button/index.html" class="comp-link">Success Button</a>
+                  <a href="components/buttons/danger-button/index.html" class="comp-link">Danger Button</a>
+                  <a href="components/buttons/warning-button/index.html" class="comp-link">Warning Button</a>
+                  <a href="components/buttons/floating-action-button/index.html" class="comp-link">Floating Action</a>
+                  <a href="components/buttons/social-login-button/index.html" class="comp-link">Social Login</a>
+                  <a href="components/buttons/3d-press-button/index.html" class="comp-link">3D Press</a>
+                  <a href="components/buttons/minimal-button/index.html" class="comp-link">Minimal Button</a>
+                  <a href="components/buttons/underline-hover-button/index.html" class="comp-link">Underline Hover</a>
+                  <a href="components/buttons/split-color-button/index.html" class="comp-link">Split Color</a>
+                  <a href="components/buttons/dark-mode-button/index.html" class="comp-link">Dark Mode</a>
+                  <a href="components/buttons/soft-ui-button/index.html" class="comp-link">Soft UI</a>
+                  <a href="components/buttons/premium-cta-button/index.html" class="comp-link">Premium CTA</a>
+                </div>
+              </details>
+            </div>
+
+            <!-- 2. CARDS CATEGORY (COMPLETED) -->
+            <div class="category-card state-completed" data-category="cards">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-green">Completed</span>
+                  <h3 class="category-name">Cards</h3>
+                </div>
+                <span class="category-count">30 Components</span>
+              </div>
+              <p class="category-desc">Responsive layouts utilizing modern CSS Grid, Flexbox, and Container Queries to display content flawlessly inside any wrapper.</p>
+
+              <details class="category-details">
+                <summary class="details-summary">View all 30 Cards</summary>
+                <div class="component-links-grid">
+                  <a href="components/cards/basic-card/index.html" class="comp-link">Basic Card</a>
+                  <a href="components/cards/product-card/index.html" class="comp-link">Product Card</a>
+                  <a href="components/cards/blog-post-card/index.html" class="comp-link">Blog Post Card</a>
+                  <a href="components/cards/pricing-card/index.html" class="comp-link">Pricing Card</a>
+                  <a href="components/cards/user-profile-card/index.html" class="comp-link">User Profile</a>
+                  <a href="components/cards/team-member-card/index.html" class="comp-link">Team Member</a>
+                  <a href="components/cards/testimonial-card/index.html" class="comp-link">Testimonial Card</a>
+                  <a href="components/cards/feature-card/index.html" class="comp-link">Feature Card</a>
+                  <a href="components/cards/service-card/index.html" class="comp-link">Service Card</a>
+                  <a href="components/cards/statistics-card/index.html" class="comp-link">Statistics Card</a>
+                  <a href="components/cards/dashboard-summary-card/index.html" class="comp-link">Dashboard Summary</a>
+                  <a href="components/cards/event-card/index.html" class="comp-link">Event Card</a>
+                  <a href="components/cards/course-card/index.html" class="comp-link">Course Card</a>
+                  <a href="components/cards/job-listing-card/index.html" class="comp-link">Job Listing</a>
+                  <a href="components/cards/property-listing-card/index.html" class="comp-link">Property Listing</a>
+                  <a href="components/cards/restaurant-card/index.html" class="comp-link">Restaurant Card</a>
+                  <a href="components/cards/travel-destination-card/index.html" class="comp-link">Travel Destination</a>
+                  <a href="components/cards/e-commerce-product-card/index.html" class="comp-link">E-commerce Product</a>
+                  <a href="components/cards/shopping-cart-card/index.html" class="comp-link">Shopping Cart</a>
+                  <a href="components/cards/music-album-card/index.html" class="comp-link">Music Album</a>
+                  <a href="components/cards/video-thumbnail-card/index.html" class="comp-link">Video Thumbnail</a>
+                  <a href="components/cards/news-card/index.html" class="comp-link">News Card</a>
+                  <a href="components/cards/portfolio-project-card/index.html" class="comp-link">Portfolio Project</a>
+                  <a href="components/cards/nft-showcase-card/index.html" class="comp-link">NFT Showcase</a>
+                  <a href="components/cards/glassmorphism-card/index.html" class="comp-link">Glassmorphism</a>
+                  <a href="components/cards/neumorphism-card/index.html" class="comp-link">Neumorphism</a>
+                  <a href="components/cards/minimal-card/index.html" class="comp-link">Minimal Card</a>
+                  <a href="components/cards/gradient-card/index.html" class="comp-link">Gradient Card</a>
+                  <a href="components/cards/dark-theme-card/index.html" class="comp-link">Dark Theme Card</a>
+                  <a href="components/cards/premium-saas-feature-card/index.html" class="comp-link">Premium SaaS Feature</a>
+                </div>
+              </details>
+            </div>
+
+            <!-- 3. FORMS CATEGORY (COMPLETED) -->
+            <div class="category-card state-completed" data-category="cards">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-green">Completed</span>
+                  <h3 class="category-name">Forms</h3>
+                </div>
+                <span class="category-count">25 Components</span>
+              </div>
+              <p class="category-desc">Robust and accessible form structures, from login validation grids and newsletter inputs to interactive file uploads and checkout matrices.</p>
+
+              <details class="category-details">
+                <summary class="details-summary">View all 25 Forms</summary>
+                <div class="component-links-grid">
+                  <a href="components/forms/login-form/index.html" class="comp-link">Login Form</a>
+                  <a href="components/forms/registration-form/index.html" class="comp-link">Registration Form</a>
+                  <a href="components/forms/contact-form/index.html" class="comp-link">Contact Form</a>
+                  <a href="components/forms/newsletter-signup/index.html" class="comp-link">Newsletter Signup</a>
+                  <a href="components/forms/search-form/index.html" class="comp-link">Search Form</a>
+                  <a href="components/forms/checkout-form/index.html" class="comp-link">Checkout Form</a>
+                  <a href="components/forms/payment-form/index.html" class="comp-link">Payment Form</a>
+                  <a href="components/forms/multi-column-form/index.html" class="comp-link">Multi-Column Form</a>
+                  <a href="components/forms/profile-settings-form/index.html" class="comp-link">Profile Settings</a>
+                  <a href="components/forms/password-reset-form/index.html" class="comp-link">Password Reset</a>
+                  <a href="components/forms/otp-verification-form/index.html" class="comp-link">OTP Verification</a>
+                  <a href="components/forms/file-upload-form/index.html" class="comp-link">File Upload</a>
+                  <a href="components/forms/appointment-booking-form/index.html" class="comp-link">Appointment Booking</a>
+                  <a href="components/forms/feedback-form/index.html" class="comp-link">Feedback Form</a>
+                  <a href="components/forms/survey-form/index.html" class="comp-link">Survey Form</a>
+                  <a href="components/forms/job-application-form/index.html" class="comp-link">Job Application</a>
+                  <a href="components/forms/event-registration-form/index.html" class="comp-link">Event Registration</a>
+                  <a href="components/forms/medical-intake-form/index.html" class="comp-link">Medical Intake</a>
+                  <a href="components/forms/support-ticket-form/index.html" class="comp-link">Support Ticket</a>
+                  <a href="components/forms/subscription-form/index.html" class="comp-link">Subscription Form</a>
+                  <a href="components/forms/floating-label-form/index.html" class="comp-link">Floating Label</a>
+                  <a href="components/forms/glassmorphism-form/index.html" class="comp-link">Glassmorphism</a>
+                  <a href="components/forms/neumorphism-form/index.html" class="comp-link">Neumorphism</a>
+                  <a href="components/forms/minimal-form/index.html" class="comp-link">Minimal Form</a>
+                  <a href="components/forms/premium-saas-form/index.html" class="comp-link">Premium SaaS Form</a>
+                </div>
+              </details>
+            </div>
+
+            <!-- 4. ACCORDIONS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="accordions">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Accordions</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Vertical collapsible panels utilizing native details/summary or smooth grid height transition strategies.</p>
+              <a href="components/accordions/README.md" class="docs-link-arrow">Read Roadmap & Docs &rarr;</a>
+            </div>
+
+            <!-- 5. ALERTS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="alerts">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Alerts</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Notification banners, custom toasts, and inline status panels built for flexible spacing and clear contrast.</p>
+            </div>
+
+            <!-- 6. AVATARS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="avatars">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Avatars</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">User profile chips, active status badges, overlapping group containers, and placeholder letters.</p>
+            </div>
+
+            <!-- 7. BADGES (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="badges">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Badges</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Micro labels, pill counters, notification dots, and editorial metadata indicators.</p>
+            </div>
+
+            <!-- 8. BREADCRUMBS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="breadcrumbs">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Breadcrumbs</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Hierarchical site navigation trails leveraging semantic list elements and separators via generated content.</p>
+            </div>
+
+            <!-- 9. FOOTERS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="footers">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Footers</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Accessible and fluid layout grids for site-wide navigation lists, copyrights, and social areas.</p>
+            </div>
+
+            <!-- 10. HEROES (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="heroes">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Heroes</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Engaging landing headers with fluid, proportional typography and multi-column background panels.</p>
+            </div>
+
+            <!-- 11. LOADERS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="loaders">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Loaders</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Pure CSS spinners, progress waves, infinite path animations, and custom page skeleton cards.</p>
+            </div>
+
+            <!-- 12. MODALS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="modals">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Modals</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Accessible light boxes using native HTML `<dialog>` tags to guarantee focal management and overlays.</p>
+            </div>
+
+            <!-- 13. NAVIGATION (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="navigation">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Navigation</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Responsive headers, dropdown toggle structures, and drawer menus designed without JS dependencies.</p>
+            </div>
+
+            <!-- 14. PAGINATION (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="pagination">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Pagination</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Fluid list index maps, active indicators, and prev/next responsive trigger configurations.</p>
+            </div>
+
+            <!-- 15. PRICING (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="pricing">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Pricing</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Grid comparison boxes, checkmarks, feature toggles, and premium highlighting layouts.</p>
+            </div>
+
+            <!-- 16. PROGRESS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="progress">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Progress</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Step trackers, radial loaders, dynamic progress lines, and custom percentage layouts.</p>
+            </div>
+
+            <!-- 17. TABLES (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="tables">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Tables</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Fluid, scrollable tables, structured table headers, data rows, and accessibility cell mappings.</p>
+            </div>
+
+            <!-- 18. TABS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="tabs">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Tabs</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Elegant horizontal sliding structures utilizing checked selectors to control visibility without scripts.</p>
+            </div>
+
+            <!-- 19. TOOLTIPS (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="tooltips">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Tooltips</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Hover contexts and focus popovers positioned smoothly with logical anchor definitions.</p>
+            </div>
+
+            <!-- 20. UTILITIES (UPCOMING) -->
+            <div class="category-card state-upcoming" data-category="utilities">
+              <div class="category-header-row">
+                <div class="category-info">
+                  <span class="category-badge badge-yellow">Upcoming</span>
+                  <h3 class="category-name">Utilities</h3>
+                </div>
+                <span class="category-count">Planned</span>
+              </div>
+              <p class="category-desc">Screen-reader-only helpers, logical layouts, flexible grid utilities, and variable-driven systems.</p>
+            </div>
+
+          </div> <!-- End Grid -->
+        </div> <!-- End Filter System -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="footer-logo">🎨</span>
+        <p class="footer-desc">A pristine catalog setting new standards for HTML5 accessibility and modern CSS capabilities.</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; 2024 Modern CSS Components. Released under the MIT License.</p>
+        <p>Built for educational and production use. 100% Copy & Paste.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Basic CSS keyboard support for tab selectors -->
+  <script>
+    // Since we don't have JS unless essential, this serves purely to make keyboard 'Enter/Space' select radio buttons for a11y.
+    document.querySelectorAll('.filter-tab-label').forEach(label => {
+      label.addEventListener('keydown', e => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          const radioId = label.getAttribute('for');
+          document.getElementById(radioId).checked = true;
+          document.getElementById(radioId).dispatchEvent(new Event('change'));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
