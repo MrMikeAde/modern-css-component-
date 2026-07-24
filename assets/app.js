@@ -1,0 +1,1126 @@
+/**
+ * Modern CSS Components - Core Single Page Application Router & State Engine
+ */
+
+// Initialize Local State
+const state = {
+  currentRoute: "home", // "home" | "getting-started" | "category" | "component"
+  activeCategory: null,
+  activeComponent: null,
+  searchQuery: "",
+  activeFilters: {
+    responsive: false,
+    dark_mode: false,
+    accessible: false,
+    animation: false,
+    layout: false,
+    form: false,
+    navigation: false
+  },
+  theme: "light"
+};
+
+// --- 1. Router Navigation & URL Parsing ---
+function parseRoute() {
+  const hash = window.location.hash.trim();
+
+  if (!hash || hash === "#") {
+    state.currentRoute = "home";
+    state.activeCategory = null;
+    state.activeComponent = null;
+  } else if (hash === "#getting-started") {
+    state.currentRoute = "getting-started";
+    state.activeCategory = null;
+    state.activeComponent = null;
+  } else if (hash.startsWith("#category/")) {
+    state.currentRoute = "category";
+    state.activeCategory = hash.replace("#category/", "");
+    state.activeComponent = null;
+  } else if (hash.startsWith("#component/")) {
+    state.currentRoute = "component";
+    const parts = hash.replace("#component/", "").split("/");
+    state.activeCategory = parts[0] || null;
+    state.activeComponent = parts[1] || null;
+  } else {
+    // Fallback safe route
+    state.currentRoute = "home";
+  }
+}
+
+// Global Nav & Layout Toggle Update
+function updateLayoutShell() {
+  const appShellBody = document.body;
+
+  // Highlighting correct Top navigation item
+  const homeNav = document.getElementById("nav-home");
+  const compNav = document.getElementById("nav-components");
+  const startNav = document.getElementById("nav-getstarted");
+
+  [homeNav, compNav, startNav].forEach(el => el && el.classList.remove("active"));
+
+  if (state.currentRoute === "home") {
+    appShellBody.classList.add("full-width-layout");
+    if (homeNav) homeNav.classList.add("active");
+  } else if (state.currentRoute === "getting-started") {
+    appShellBody.classList.remove("full-width-layout");
+    if (startNav) startNav.classList.add("active");
+  } else {
+    appShellBody.classList.remove("full-width-layout");
+    if (compNav) compNav.classList.add("active");
+  }
+
+  // Update Sidebar active component highlighting
+  updateSidebarHighlighting();
+}
+
+function updateSidebarHighlighting() {
+  const links = document.querySelectorAll(".sidebar-item-link");
+  links.forEach(link => {
+    link.classList.remove("active");
+    const href = link.getAttribute("href");
+    if (state.currentRoute === "category" && href === `#category/${state.activeCategory}`) {
+      link.classList.add("active");
+    }
+    if (state.currentRoute === "component" && href === `#category/${state.activeCategory}`) {
+      link.classList.add("active");
+    }
+  });
+}
+
+// --- 2. Live High-Performance Tokenizer (Syntax Highlighting) ---
+function runHTMLTokenizer(htmlCode) {
+  if (!htmlCode) return "";
+  // Escapes safe strings, highlights standard components
+  let escaped = htmlCode
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Highlight comments
+  escaped = escaped.replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="tk-comment">$1</span>');
+
+  // Highlight double quoted values
+  escaped = escaped.replace(/(&quot;[\s\S]*?&quot;)/g, '<span class="tk-val">$1</span>');
+  escaped = escaped.replace(/('[\s\S]*?')/g, '<span class="tk-val">$1</span>');
+
+  // Highlight attributes
+  escaped = escaped.replace(/\s([a-zA-Z0-9\-_]+)=/g, ' <span class="tk-attr">$1</span>=');
+
+  // Highlight Tags
+  escaped = escaped.replace(/(&lt;\/?[a-zA-Z0-9]+)/g, '<span class="tk-tag">$1</span>');
+  escaped = escaped.replace(/(\/?&gt;)/g, '<span class="tk-tag">$1</span>');
+
+  return escaped;
+}
+
+function runCSSTokenizer(cssCode) {
+  if (!cssCode) return "";
+  let escaped = cssCode
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Comments
+  escaped = escaped.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="tk-comment">$1</span>');
+
+  // String / values
+  escaped = escaped.replace(/(:\s*[^;}\n]+)/g, function(match) {
+    // highlight properties, values, units
+    let inner = match;
+    // Highlight variables
+    inner = inner.replace(/(var\([^)]+\))/g, '<span class="tk-fn">$1</span>');
+    // Highlight numbers/units
+    inner = inner.replace(/(\d+px|\d+rem|\d+em|\d+deg|#?[a-fA-F0-9]{3,8})/g, '<span class="tk-unit">$1</span>');
+    return inner;
+  });
+
+  // Highlight CSS selectors
+  escaped = escaped.replace(/([.#a-zA-Z0-9\-_: ,>+~]+)\s*\{/g, '<span class="tk-selector">$1</span> {');
+
+  // Highlight specific CSS property labels
+  escaped = escaped.replace(/(\s[a-zA-Z\-]+)\s*:/g, '<span class="tk-prop">$1</span>:');
+
+  return escaped;
+}
+
+// --- 3. View Renderer Engine ---
+const ViewRenderers = {
+  // Render Homepage
+  home() {
+    // Count stats
+    const totalComponents = COMPONENT_DATA.categories.reduce((acc, cat) => acc + (cat.components ? cat.components.length : 0), 0);
+    const completedCategoriesCount = COMPONENT_DATA.categories.filter(c => c.status === "Completed").length;
+
+    // Generate Featured Categories Markup
+    const completedCats = COMPONENT_DATA.categories.filter(c => c.status === "Completed");
+    const featuredCatsMarkup = completedCats.map(cat => `
+      <a href="#category/${cat.id}" class="featured-cat-card">
+        <div class="featured-cat-icon">${cat.icon}</div>
+        <div class="featured-cat-name">${cat.name}</div>
+        <div class="featured-cat-desc">${cat.description}</div>
+        <div class="featured-cat-count">${cat.count} Components &rarr;</div>
+      </a>
+    `).join("");
+
+    return `
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-title-header">
+        <div class="hero-badge">🎨 Pure HTML5 & CSS3</div>
+        <h1 class="hero-headline" id="hero-title-header">Build fast, accessible, <span>modern web designs</span> effortlessly.</h1>
+        <p class="hero-para">An educational gallery of 80 production-grade UI components. Zero dependencies, zero framework locked-in styles. Just pure copy-paste elegance.</p>
+        <div class="hero-btns">
+          <a href="#category/buttons" class="btn btn-primary">Browse Components</a>
+          <a href="#getting-started" class="btn btn-secondary">Get Started</a>
+        </div>
+      </section>
+
+      <!-- Stats Showcase Grid -->
+      <div class="stats-grid" aria-label="Library Statistics">
+        <div class="stat-box">
+          <div class="stat-box-num">${totalComponents}</div>
+          <div class="stat-box-lbl">Total Components</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">${completedCategoriesCount}</div>
+          <div class="stat-box-lbl">Active Categories</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">100%</div>
+          <div class="stat-box-lbl">Open Source</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">&lt;1ms</div>
+          <div class="stat-box-lbl">Runtime Impact</div>
+        </div>
+      </div>
+
+      <!-- Featured Categories Section -->
+      <section class="home-section" aria-labelledby="featured-cats-title">
+        <h2 class="home-section-title" id="featured-cats-title">Featured Categories</h2>
+        <p class="home-section-subtitle">Jump straight into high-performance structural layouts, forms, and core navigation patterns.</p>
+        <div class="featured-cats-grid">
+          ${featuredCatsMarkup}
+        </div>
+      </section>
+
+      <!-- Why Modern CSS Components Section -->
+      <section class="home-section" aria-labelledby="why-modern-title">
+        <h2 class="home-section-title" id="why-modern-title">Why Modern CSS Components?</h2>
+        <p class="home-section-subtitle">We build for the future of the web. Fully responsive layouts with maximum accessibility controls built in.</p>
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon">⚡</div>
+            <h3>No Javascript Overhead</h3>
+            <p>Our structures run pure CSS variables, container queries, and logical properties to ensure lightning-quick renders with no dependency delays.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">♿</div>
+            <h3>Accessibility First</h3>
+            <p>Form elements and actions carry custom-built keyboard outline indicators, ARIA attributes, and accessible markup layouts by default.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">🌓</div>
+            <h3>Dark Mode Built-in</h3>
+            <p>Nearly all components support native styling configurations for Light/Dark environments effortlessly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Getting Started Section Preview -->
+      <section class="home-section" aria-labelledby="get-started-home-title">
+        <h2 class="home-section-title" id="get-started-home-title">Get Started in 3 Steps</h2>
+        <p class="home-section-subtitle">Integrating professional styles into any project requires only a few standard mouse clicks.</p>
+        <div class="steps-wrapper">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Select a Component</h3>
+              <p>Explore our beautiful collections of interactive triggers, forms, or content-rich cards inside the sidebar panels.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Preview & Customize</h3>
+              <p>Interact with live code editors, sandbox view ports, toggling responsively to verify exact structural layout fits.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Copy and Ship</h3>
+              <p>One-click clipboard copy-paste of structured HTML5 templates and CSS3 layouts direct to your active codebase.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-btns" style="margin-top: 3.5rem;">
+          <a href="#getting-started" class="btn btn-primary">Read Complete Documentation</a>
+        </div>
+      </section>
+    `;
+  },
+
+  // Render Getting Started documentation page
+  "getting-started"() {
+    return `
+      <div class="category-intro">
+        <div class="category-intro-title-row">
+          <span class="category-intro-icon">🚀</span>
+          <h1 class="category-intro-name">Getting Started</h1>
+        </div>
+        <p class="category-intro-desc">Welcome to the future of pure CSS components. Learn how to copy, customize, and structure your styles seamlessly.</p>
+      </div>
+
+      <div class="sub-docs-grid" style="grid-template-columns: 1fr;">
+        <div class="sub-docs-card">
+          <h3>📦 Basic Integration Philosophy</h3>
+          <p>This is not an all-inclusive component package or framework that forces bulky, redundant code onto your visitors. Instead, we provide isolated, copy-paste layouts designed to be lightweight, custom-branded, and high-performance.</p>
+          <ul class="sub-docs-list">
+            <li><strong>Copy-Paste Isolated Blocks:</strong> Select a card, button, or form, hit copy, and paste the code straight into your markup.</li>
+            <li><strong>Design Tokens & Variables:</strong> Every element is constructed using accessible CSS Custom Variables to allow straightforward styling changes.</li>
+            <li><strong>No Heavy Build Tooling:</strong> Use any editor or environment you like—nothing here requires compilation or bundle steps.</li>
+          </ul>
+        </div>
+
+        <div class="sub-docs-card">
+          <h3>⚡ Best Practices for Custom Styling</h3>
+          <p>For pristine maintainability, we recommend standardizing custom root variable palettes across your main app stylesheet files:</p>
+          <pre class="code-block-pre" style="background:var(--color-code-bg); border-radius:var(--radius-md); padding:1rem; color:var(--color-code-text); margin-bottom:1rem; overflow-x:auto;">
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-bg-light: #f8fafc;
+  --radius-md: 0.625rem;
+}
+          </pre>
+          <p>By registering unified variables, every component you paste inside your application adapts to your custom branding automatically!</p>
+        </div>
+
+        <div class="sub-docs-card">
+          <h3>♿ Ensuring Strong Accessibility</h3>
+          <p>When pasting our structures, ensure that you maintain our key focus-state declarations and supply proper custom text identifiers:</p>
+          <ul class="sub-docs-list">
+            <li>Never override <code>:focus-visible</code> or outline rings unless you are mapping alternate visible borders.</li>
+            <li>Always replace general fallback labels with exact descriptive string values matching screen reader needs.</li>
+            <li>Use semantic sectioning elements (<code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>) instead of general multi-nested division labels where applicable.</li>
+          </ul>
+        </div>
+      </div>
+    `;
+  },
+
+  // Render Category Page displaying lists of components inside a grid
+  category() {
+    const categoryId = state.activeCategory;
+    const category = COMPONENT_DATA.categories.find(c => c.id === categoryId);
+
+    if (!category) {
+      return `
+        <div class="empty-results">
+          <div class="empty-icon">⚠️</div>
+          <h3>Category Not Found</h3>
+          <p>The specified category identifier does not map to any active catalogs.</p>
+          <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Return Home Base</a>
+        </div>
+      `;
+    }
+
+    if (category.status === "Upcoming") {
+      return `
+        <div class="empty-results">
+          <div class="empty-icon">🚧</div>
+          <h3>Upcoming Roadmap Category</h3>
+          <p>Our developers are currently constructing high-fidelity, accessible <strong>${category.name}</strong> components. This section is scheduled to go live soon!</p>
+          <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Return Home Base</a>
+        </div>
+      `;
+    }
+
+    // Build Search & Filters panel
+    const searchFilterHtml = `
+      <div class="search-filter-panel">
+        <div class="search-field-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" class="search-input-field" id="live-search-input" placeholder="Search components in this category..." value="${state.searchQuery}" aria-label="Search category components">
+          ${state.searchQuery ? `<button class="search-clear-btn" id="clear-search-trigger" aria-label="Clear active search">&times;</button>` : ""}
+        </div>
+
+        <div class="filters-container">
+          <span class="filters-label">Filter Features:</span>
+          <div class="filters-list">
+            ${Object.keys(state.activeFilters).map(filterKey => {
+              const isChecked = state.activeFilters[filterKey];
+              const prettyLabel = filterKey.replace("_", " ");
+              return `
+                <label class="filter-checkbox-label ${isChecked ? 'checked' : ''}">
+                  <input type="checkbox" class="filter-checkbox-input" data-filter="${filterKey}" ${isChecked ? 'checked' : ''}>
+                  ${isChecked ? '✓' : '+'} ${prettyLabel}
+                </label>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Filter components based on search string and enabled filters
+    const searchFiltered = (category.components || []).filter(comp => {
+      // 1. Text search
+      if (state.searchQuery) {
+        const query = state.searchQuery.toLowerCase();
+        const matchesName = comp.name.toLowerCase().includes(query);
+        const matchesDesc = comp.description.toLowerCase().includes(query);
+        const matchesTags = comp.tags.some(t => t.toLowerCase().includes(query));
+        if (!matchesName && !matchesDesc && !matchesTags) return false;
+      }
+
+      // 2. Boolean checkboxes
+      for (const filterKey of Object.keys(state.activeFilters)) {
+        if (state.activeFilters[filterKey] === true) {
+          if (comp[filterKey] !== true) return false;
+        }
+      }
+
+      return true;
+    });
+
+    const statusHtml = `
+      <div class="search-status-bar">
+        <div class="search-status-text">Showing <span>${searchFiltered.length}</span> of <span>${category.components.length}</span> components</div>
+        ${(state.searchQuery || Object.values(state.activeFilters).some(v => v)) ? `
+          <button class="btn btn-secondary" id="reset-filters-and-search" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">Clear All</button>
+        ` : ""}
+      </div>
+    `;
+
+    // Render filtered grid cards
+    let gridCardsHtml = "";
+    if (searchFiltered.length === 0) {
+      gridCardsHtml = `
+        <div class="empty-results" style="grid-column: 1 / -1;">
+          <div class="empty-icon">🔍</div>
+          <h3>No matching components found</h3>
+          <p>Try clearing some filters or searching for different terms.</p>
+        </div>
+      `;
+    } else {
+      gridCardsHtml = searchFiltered.map(comp => {
+        // Build lazy load preview frames
+        const frameSrc = `components/${category.id}/${comp.id}/index.html`;
+        return `
+          <div class="component-card" data-comp-id="${comp.id}">
+            <div class="component-preview-thumb">
+              <span class="thumb-loader-spinner">🌀</span>
+              <iframe class="component-preview-thumb-iframe" src="${frameSrc}" title="${comp.name} Preview Thumbnail" loading="lazy"></iframe>
+            </div>
+
+            <div class="component-card-content">
+              <div class="component-card-header">
+                <h3 class="component-card-title">${comp.name}</h3>
+                <span class="diff-badge ${comp.difficulty.toLowerCase()}">${comp.difficulty}</span>
+              </div>
+
+              <p class="component-card-desc">${comp.description}</p>
+
+              <div class="component-card-tags">
+                ${comp.tags.map(t => `<span class="comp-tag">${t}</span>`).join("")}
+              </div>
+
+              <div class="component-card-features">
+                <span class="card-feature-indicator ${comp.responsive ? 'enabled' : ''}" title="${comp.responsive ? 'Responsive Design' : 'Fixed Sizing'}">
+                  📱 ${comp.responsive ? 'Yes' : 'No'}
+                </span>
+                <span class="card-feature-indicator ${comp.dark_mode ? 'enabled' : ''}" title="${comp.dark_mode ? 'Dark Mode Friendly' : 'Light Mode Only'}">
+                  🌙 ${comp.dark_mode ? 'Yes' : 'No'}
+                </span>
+                <span class="card-feature-indicator ${comp.accessible ? 'enabled' : ''}" title="${comp.accessible ? 'Accessible Focus States' : 'Not Optimized'}">
+                  ♿ ${comp.accessible ? 'Yes' : 'No'}
+                </span>
+                <span class="card-feature-indicator ${comp.animation ? 'enabled' : ''}" title="${comp.animation ? 'CSS Animations Included' : 'No Animation'}">
+                  ✨ ${comp.animation ? 'Yes' : 'No'}
+                </span>
+              </div>
+
+              <div class="component-card-footer">
+                <a href="#component/${category.id}/${comp.id}" class="btn btn-primary btn-card-action">Open Preview & Code</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    return `
+      <div class="category-intro">
+        <div class="category-intro-title-row">
+          <span class="category-intro-icon">${category.icon}</span>
+          <h1 class="category-intro-name">${category.name} Catalog</h1>
+        </div>
+        <p class="category-intro-desc">${category.description}</p>
+      </div>
+
+      ${searchFilterHtml}
+      ${statusHtml}
+
+      <div class="components-card-grid">
+        ${gridCardsHtml}
+      </div>
+    `;
+  },
+
+  // Render high-polish, full-blown component details view page
+  component() {
+    const categoryId = state.activeCategory;
+    const componentId = state.activeComponent;
+
+    const category = COMPONENT_DATA.categories.find(c => c.id === categoryId);
+    if (!category) return `<div>Category not found.</div>`;
+
+    const component = (category.components || []).find(c => c.id === componentId);
+    if (!component) {
+      return `
+        <div class="empty-results">
+          <div class="empty-icon">⚠️</div>
+          <h3>Component Not Found</h3>
+          <p>The specified component page code cannot be fetched or loaded in the current sandbox environment.</p>
+          <a href="#category/${category.id}" class="btn btn-primary" style="margin-top: 1.5rem;">Return to ${category.name}</a>
+        </div>
+      `;
+    }
+
+    // Build list of alternate related components inside this category
+    const relatedList = (category.components || [])
+      .filter(c => c.id !== component.id)
+      .slice(0, 3); // pick max 3 related elements
+
+    let relatedCardsMarkup = "";
+    if (relatedList.length > 0) {
+      relatedCardsMarkup = relatedList.map(rc => `
+        <div class="component-card">
+          <div class="component-preview-thumb" style="height:120px;">
+            <iframe class="component-preview-thumb-iframe" src="components/${category.id}/${rc.id}/index.html" title="${rc.name} Thumbnail" loading="lazy"></iframe>
+          </div>
+          <div class="component-card-content" style="padding:1rem;">
+            <h4 class="component-card-title" style="font-size:0.95rem; margin-bottom:0.25rem;">${rc.name}</h4>
+            <p class="component-card-desc" style="font-size:0.8rem; margin-bottom:0.75rem; line-height:1.4;">${rc.description}</p>
+            <a href="#component/${category.id}/${rc.id}" class="btn btn-secondary btn-card-action" style="padding:0.4rem; font-size:0.8rem;">Explore Component</a>
+          </div>
+        </div>
+      `).join("");
+    } else {
+      relatedCardsMarkup = `<p style="font-size:0.9rem; color:var(--color-text-muted);">None found.</p>`;
+    }
+
+    return `
+      <div class="back-btn-wrapper">
+        <a href="#category/${category.id}" class="back-btn" aria-label="Back to ${category.name} category list">&larr; Back to ${category.name} List</a>
+      </div>
+
+      <div class="component-detail-header">
+        <div class="detail-meta-row">
+          <span class="diff-badge ${component.difficulty.toLowerCase()}">${component.difficulty}</span>
+          <span style="font-size:0.85rem; color:var(--color-text-light); font-weight:600;">📁 PATH: components/${category.id}/${component.id}/</span>
+        </div>
+        <h1 class="detail-title">${component.name}</h1>
+        <p class="detail-desc">${component.description}</p>
+      </div>
+
+      <!-- Live Interactive Sandboxed Showcase Wrapper -->
+      <section class="showcase-block" aria-labelledby="live-preview-title">
+        <div class="showcase-toolbar">
+          <h2 class="showcase-toolbar-title" id="live-preview-title">🖥️ LIVE DEMO SANDBOX</h2>
+          <div class="showcase-toolbar-controls">
+            <!-- Sandbox responsive test dimensions switcher -->
+            <button class="icon-btn btn-sandbox-control" id="control-sandbox-mobile" title="Sizing: Mobile Viewports" aria-label="Size Sandbox to Mobile (375px)">📱</button>
+            <button class="icon-btn btn-sandbox-control" id="control-sandbox-tablet" title="Sizing: Tablet Viewports" aria-label="Size Sandbox to Tablet (768px)">📟</button>
+            <button class="icon-btn btn-sandbox-control" id="control-sandbox-desktop" title="Sizing: Full Desktop width" aria-label="Size Sandbox to Full Desktop">🖥️</button>
+          </div>
+        </div>
+        <div class="showcase-preview-container" id="sandbox-iframe-wrapper">
+          <span class="thumb-loader-spinner" id="sandbox-loader-icon">🌀</span>
+          <iframe class="showcase-iframe" id="component-live-iframe" src="components/${category.id}/${component.id}/index.html" title="${component.name} Interactive Sandbox Preview"></iframe>
+        </div>
+      </section>
+
+      <!-- Source Code viewer panels -->
+      <section class="code-viewer-grid" aria-label="Source Code Sections">
+
+        <!-- HTML Code view -->
+        <div class="code-viewer-card">
+          <div class="code-viewer-header">
+            <span class="code-viewer-lang">📋 HTML Markup</span>
+            <button class="btn-copy-code" id="btn-copy-html-trigger" data-type="html">
+              <span>📋</span> Copy Code
+            </button>
+          </div>
+          <pre class="code-block-pre"><code id="code-html-target" class="code-block-lines">Loading source markup code...</code></pre>
+        </div>
+
+        <!-- CSS Code view -->
+        <div class="code-viewer-card">
+          <div class="code-viewer-header">
+            <span class="code-viewer-lang">🎨 CSS Layout Styles</span>
+            <button class="btn-copy-code" id="btn-copy-css-trigger" data-type="css">
+              <span>🎨</span> Copy Code
+            </button>
+          </div>
+          <pre class="code-block-pre"><code id="code-css-target" class="code-block-lines">Loading CSS stylesheet classes...</code></pre>
+        </div>
+
+      </section>
+
+      <!-- Accessibility, Browser Support, and Customization Guides -->
+      <div class="sub-docs-grid">
+
+        <div class="sub-docs-card">
+          <h3>♿ Accessibility Notes</h3>
+          <p>Our structures prioritize strict semantic keyboard accessibility and color contrast rules:</p>
+          <ul class="sub-docs-list">
+            <li><strong>Keyboard Tabs Focus:</strong> Standard elements have full keyboard tab loops and high contrast outer outlines enabled.</li>
+            <li><strong>Visual Focus Outline:</strong> This component matches a minimum of 4.5:1 text color contrast requirements.</li>
+            <li><strong>ARIA Landmarks:</strong> Standard container patterns wrap semantic roles or label tags automatically.</li>
+          </ul>
+        </div>
+
+        <div class="sub-docs-card">
+          <h3>🔧 Customization Guide</h3>
+          <p>Easily adapt variable styles inside your local application directory:</p>
+          <ul class="sub-docs-list">
+            <li>Change variables declared under <code>:root</code> selectors to change branding colors.</li>
+            <li>Overrule standard borders or container gap properties inside your parent templates.</li>
+            <li>Extend hover transition keys or duration values to fit smooth system presets.</li>
+          </ul>
+        </div>
+
+        <div class="sub-docs-card">
+          <h3>🌐 Browser Support</h3>
+          <p>Tested and fully verified against modern evergreen layout rendering browsers:</p>
+          <div class="support-badges-grid">
+            <div class="support-badge">
+              <span class="support-icon">🌐</span>
+              <span style="font-size:0.7rem; font-weight:700; display:block;">Chrome</span>
+              <span class="support-val">Stable</span>
+            </div>
+            <div class="support-badge">
+              <span class="support-icon">🦊</span>
+              <span style="font-size:0.7rem; font-weight:700; display:block;">Firefox</span>
+              <span class="support-val">Stable</span>
+            </div>
+            <div class="support-badge">
+              <span class="support-icon">🧭</span>
+              <span style="font-size:0.7rem; font-weight:700; display:block;">Safari</span>
+              <span class="support-val">15+</span>
+            </div>
+            <div class="support-badge">
+              <span class="support-icon">🎛️</span>
+              <span style="font-size:0.7rem; font-weight:700; display:block;">Edge</span>
+              <span class="support-val">Stable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-docs-card">
+          <h3>📚 Learn More from README</h3>
+          <p>Every individual component holds an in-depth instructions guide covering setup and code specifications.</p>
+          <pre class="code-block-pre" id="code-readme-target" style="font-size:0.8rem; background:var(--color-bg-light); border-radius:var(--radius-md); padding:0.75rem; color:var(--color-text-muted); max-height:180px; overflow-y:auto; border:1px solid var(--color-border);">Fetching instructions README documentation...</pre>
+        </div>
+
+      </div>
+
+      <!-- Related components grid -->
+      <section class="related-components-section" aria-labelledby="related-comps-title">
+        <h3 class="related-components-title" id="related-comps-title">Related Components inside ${category.name}</h3>
+        <div class="components-card-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;">
+          ${relatedCardsMarkup}
+        </div>
+      </section>
+    `;
+  }
+};
+
+// --- 4. Sidebar Dynamic Binding Engine ---
+function renderSidebars() {
+  const completedList = document.getElementById("sidebar-completed-categories");
+  const upcomingList = document.getElementById("sidebar-upcoming-categories");
+  const mobileList = document.getElementById("mobile-sidebar-categories-list");
+
+  let completedMarkup = "";
+  let upcomingMarkup = "";
+  let mobileMarkup = "";
+
+  COMPONENT_DATA.categories.forEach(cat => {
+    const isCompleted = cat.status === "Completed";
+    const markup = `
+      <li>
+        <a href="#category/${cat.id}" class="sidebar-item-link">
+          <span class="sidebar-icon">${cat.icon}</span>
+          <span class="sidebar-text" style="margin-right:auto; margin-left:0.5rem;">${cat.name}</span>
+          <span class="sidebar-badge ${cat.status.toLowerCase()}">${isCompleted ? cat.count : 'roadmap'}</span>
+        </a>
+      </li>
+    `;
+
+    if (isCompleted) {
+      completedMarkup += markup;
+    } else {
+      upcomingMarkup += markup;
+    }
+    mobileMarkup += markup;
+  });
+
+  if (completedList) completedList.innerHTML = completedMarkup;
+  if (upcomingList) upcomingList.innerHTML = upcomingMarkup;
+  if (mobileList) mobileList.innerHTML = mobileMarkup;
+}
+
+// --- 5. Code Loading & Rendering System ---
+let loadedHTMLSource = "";
+let loadedCSSSource = "";
+
+async function loadComponentSourceCode() {
+  const htmlTarget = document.getElementById("code-html-target");
+  const cssTarget = document.getElementById("code-css-target");
+  const readmeTarget = document.getElementById("code-readme-target");
+
+  if (!htmlTarget || !cssTarget) return;
+
+  const categoryId = state.activeCategory;
+  const componentId = state.activeComponent;
+
+  const htmlPath = `components/${categoryId}/${componentId}/index.html`;
+  const cssPath = `components/${categoryId}/${componentId}/style.css`;
+  const readmePath = `components/${categoryId}/${componentId}/README.md`;
+
+  // Fetch HTML Code
+  try {
+    const res = await fetch(htmlPath);
+    if (!res.ok) throw new Error();
+    const raw = await res.text();
+    loadedHTMLSource = raw;
+    htmlTarget.innerHTML = runHTMLTokenizer(raw);
+  } catch (err) {
+    htmlTarget.textContent = "Failed to load HTML markup file.";
+    loadedHTMLSource = "";
+  }
+
+  // Fetch CSS Code
+  try {
+    const res = await fetch(cssPath);
+    if (!res.ok) throw new Error();
+    const raw = await res.text();
+    loadedCSSSource = raw;
+    cssTarget.innerHTML = runCSSTokenizer(raw);
+  } catch (err) {
+    cssTarget.textContent = "Failed to load CSS stylesheet classes.";
+    loadedCSSSource = "";
+  }
+
+  // Fetch README Docs
+  try {
+    const res = await fetch(readmePath);
+    if (!res.ok) throw new Error();
+    const raw = await res.text();
+    readmeTarget.textContent = raw;
+  } catch (err) {
+    readmeTarget.textContent = "Failed to fetch details from README.md instructions.";
+  }
+}
+
+// --- 6. Clipboard Mechanism & Toast Warnings ---
+function showToast(message) {
+  const container = document.getElementById("toast-alerts-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerHTML = `<span>📋</span> ${message}`;
+
+  container.appendChild(toast);
+
+  // Remove toast after duration
+  setTimeout(() => {
+    toast.style.animation = "slideInToast 0.2s reverse forwards";
+    setTimeout(() => {
+      toast.remove();
+    }, 200);
+  }, 2500);
+}
+
+function handleCopyAction(type) {
+  const codeToCopy = type === "html" ? loadedHTMLSource : loadedCSSSource;
+
+  if (!codeToCopy) {
+    showToast("No active code found to write to clipboard.");
+    return;
+  }
+
+  navigator.clipboard.writeText(codeToCopy).then(() => {
+    showToast(`Successfully copied ${type.toUpperCase()} block!`);
+  }).catch(() => {
+    showToast("Failed to write clipboard data.");
+  });
+}
+
+// --- 7. Sandbox controls ---
+function updateSandboxResponsiveWidth(size) {
+  const wrapper = document.getElementById("sandbox-iframe-wrapper");
+  const iframe = document.getElementById("component-live-iframe");
+
+  if (!wrapper || !iframe) return;
+
+  if (size === "mobile") {
+    wrapper.style.width = "375px";
+    wrapper.style.margin = "0 auto";
+    iframe.style.width = "375px";
+  } else if (size === "tablet") {
+    wrapper.style.width = "768px";
+    wrapper.style.margin = "0 auto";
+    iframe.style.width = "768px";
+  } else {
+    // Desktop View
+    wrapper.style.width = "100%";
+    wrapper.style.margin = "0";
+    iframe.style.width = "100%";
+  }
+}
+
+// --- 8. Unified Router Event Coordinator ---
+function navigate() {
+  // Parse location hash
+  parseRoute();
+
+  // Scroll viewport smoothly to top on routing
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Update layout header nav active selections
+  updateLayoutShell();
+
+  // Pick target container
+  const mainTarget = document.getElementById("main-content-target");
+  if (!mainTarget) return;
+
+  // Render correct route template
+  const renderer = ViewRenderers[state.currentRoute];
+  if (renderer) {
+    mainTarget.innerHTML = renderer();
+
+    // Attach lazy load iframe spin controls if needed
+    attachLazyLoadingIframeEvents();
+  }
+
+  // Load component source code on detail page
+  if (state.currentRoute === "component") {
+    loadComponentSourceCode();
+  }
+
+  // Attach dynamic event listeners inside newly rendered layouts
+  attachViewEventListeners();
+}
+
+function attachLazyLoadingIframeEvents() {
+  // Category preview frames or details sandbox loader triggers
+  const frames = document.querySelectorAll("iframe");
+  frames.forEach(iframe => {
+    iframe.addEventListener("load", () => {
+      const loader = iframe.previousElementSibling;
+      if (loader && loader.classList.contains("thumb-loader-spinner")) {
+        loader.style.display = "none";
+      }
+    });
+  });
+}
+
+// --- 9. Dynamic Interactive Subviews Listener Engine ---
+function attachViewEventListeners() {
+  // Search Input trigger inside Category Page
+  const searchInput = document.getElementById("live-search-input");
+  if (searchInput) {
+    searchInput.focus();
+    searchInput.addEventListener("input", (e) => {
+      state.searchQuery = e.target.value;
+
+      // Fast re-render of components lists to achieve instant update feel
+      reRenderFilteredGrid();
+    });
+  }
+
+  // Clear search query button action
+  const clearBtn = document.getElementById("clear-search-trigger");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      state.searchQuery = "";
+      navigate();
+    });
+  }
+
+  // Multi-checkbox features filters trigger
+  const filterCheckboxes = document.querySelectorAll(".filter-checkbox-input");
+  filterCheckboxes.forEach(cb => {
+    cb.addEventListener("change", (e) => {
+      const filterKey = e.target.getAttribute("data-filter");
+      state.activeFilters[filterKey] = e.target.checked;
+
+      // Highlighting visually checked filter labels
+      const parentLabel = e.target.closest(".filter-checkbox-label");
+      if (parentLabel) {
+        if (e.target.checked) {
+          parentLabel.classList.add("checked");
+        } else {
+          parentLabel.classList.remove("checked");
+        }
+      }
+
+      reRenderFilteredGrid();
+    });
+  });
+
+  // Reset filters and search queries completely
+  const resetBtn = document.getElementById("reset-filters-and-search");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      state.searchQuery = "";
+      Object.keys(state.activeFilters).forEach(k => state.activeFilters[k] = false);
+      navigate();
+    });
+  }
+
+  // Sandbox Toolbar controls triggers (Mobile/Tablet/Desktop resize sandboxes)
+  const btnMobile = document.getElementById("control-sandbox-mobile");
+  const btnTablet = document.getElementById("control-sandbox-tablet");
+  const btnDesktop = document.getElementById("control-sandbox-desktop");
+
+  if (btnMobile) btnMobile.addEventListener("click", () => updateSandboxResponsiveWidth("mobile"));
+  if (btnTablet) btnTablet.addEventListener("click", () => updateSandboxResponsiveWidth("tablet"));
+  if (btnDesktop) btnDesktop.addEventListener("click", () => updateSandboxResponsiveWidth("desktop"));
+
+  // Source Clipboard actions
+  const copyHtmlBtn = document.getElementById("btn-copy-html-trigger");
+  const copyCssBtn = document.getElementById("btn-copy-css-trigger");
+
+  if (copyHtmlBtn) copyHtmlBtn.addEventListener("click", () => handleCopyAction("html"));
+  if (copyCssBtn) copyCssBtn.addEventListener("click", () => handleCopyAction("css"));
+}
+
+// Perform lightning-quick re-render of category cards grid on filter changes
+function reRenderFilteredGrid() {
+  if (state.currentRoute !== "category") return;
+
+  const category = COMPONENT_DATA.categories.find(c => c.id === state.activeCategory);
+  if (!category) return;
+
+  const targetGrid = document.querySelector(".components-card-grid");
+  const targetStatusBar = document.querySelector(".search-status-bar");
+
+  if (!targetGrid || !targetStatusBar) return;
+
+  // Filter components list
+  const filtered = (category.components || []).filter(comp => {
+    if (state.searchQuery) {
+      const query = state.searchQuery.toLowerCase();
+      const matchesName = comp.name.toLowerCase().includes(query);
+      const matchesDesc = comp.description.toLowerCase().includes(query);
+      const matchesTags = comp.tags.some(t => t.toLowerCase().includes(query));
+      if (!matchesName && !matchesDesc && !matchesTags) return false;
+    }
+
+    for (const filterKey of Object.keys(state.activeFilters)) {
+      if (state.activeFilters[filterKey] === true) {
+        if (comp[filterKey] !== true) return false;
+      }
+    }
+    return true;
+  });
+
+  // Update Status Text
+  targetStatusBar.innerHTML = `
+    <div class="search-status-text">Showing <span>${filtered.length}</span> of <span>${category.components.length}</span> components</div>
+    ${(state.searchQuery || Object.values(state.activeFilters).some(v => v)) ? `
+      <button class="btn btn-secondary" id="reset-filters-and-search" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">Clear All</button>
+    ` : ""}
+  `;
+
+  // Update Grid Cards
+  if (filtered.length === 0) {
+    targetGrid.innerHTML = `
+      <div class="empty-results" style="grid-column: 1 / -1;">
+        <div class="empty-icon">🔍</div>
+        <h3>No matching components found</h3>
+        <p>Try clearing some filters or searching for different terms.</p>
+      </div>
+    `;
+  } else {
+    targetGrid.innerHTML = filtered.map(comp => {
+      const frameSrc = `components/${category.id}/${comp.id}/index.html`;
+      return `
+        <div class="component-card" data-comp-id="${comp.id}">
+          <div class="component-preview-thumb">
+            <span class="thumb-loader-spinner">🌀</span>
+            <iframe class="component-preview-thumb-iframe" src="${frameSrc}" title="${comp.name} Preview Thumbnail" loading="lazy"></iframe>
+          </div>
+
+          <div class="component-card-content">
+            <div class="component-card-header">
+              <h3 class="component-card-title">${comp.name}</h3>
+              <span class="diff-badge ${comp.difficulty.toLowerCase()}">${comp.difficulty}</span>
+            </div>
+
+            <p class="component-card-desc">${comp.description}</p>
+
+            <div class="component-card-tags">
+              ${comp.tags.map(t => `<span class="comp-tag">${t}</span>`).join("")}
+            </div>
+
+            <div class="component-card-features">
+              <span class="card-feature-indicator ${comp.responsive ? 'enabled' : ''}" title="${comp.responsive ? 'Responsive Design' : 'Fixed Sizing'}">
+                📱 ${comp.responsive ? 'Yes' : 'No'}
+              </span>
+              <span class="card-feature-indicator ${comp.dark_mode ? 'enabled' : ''}" title="${comp.dark_mode ? 'Dark Mode Friendly' : 'Light Mode Only'}">
+                🌙 ${comp.dark_mode ? 'Yes' : 'No'}
+              </span>
+              <span class="card-feature-indicator ${comp.accessible ? 'enabled' : ''}" title="${comp.accessible ? 'Accessible Focus States' : 'Not Optimized'}">
+                ♿ ${comp.accessible ? 'Yes' : 'No'}
+              </span>
+              <span class="card-feature-indicator ${comp.animation ? 'enabled' : ''}" title="${comp.animation ? 'CSS Animations Included' : 'No Animation'}">
+                ✨ ${comp.animation ? 'Yes' : 'No'}
+              </span>
+            </div>
+
+            <div class="component-card-footer">
+              <a href="#component/${category.id}/${comp.id}" class="btn btn-primary btn-card-action">Open Preview & Code</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Re-attach specific subviews actions like Resets & Lazy Load frames
+  attachLazyLoadingIframeEvents();
+  const resetBtn = document.getElementById("reset-filters-and-search");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      state.searchQuery = "";
+      Object.keys(state.activeFilters).forEach(k => state.activeFilters[k] = false);
+      navigate();
+    });
+  }
+}
+
+// --- 10. Global UI Events & Mobile Sidebar Drawer Panel Co-coordinators ---
+function setupGlobalUIListeners() {
+  // Mobile drawer sidebar toggle controls
+  const burgerBtn = document.getElementById("burger-menu-btn");
+  const drawerOverlay = document.getElementById("mobile-sidebar-drawer-overlay");
+  const closeBtn = document.getElementById("drawer-close-trigger-btn");
+
+  function openDrawer() {
+    if (drawerOverlay) {
+      drawerOverlay.classList.add("open");
+      drawerOverlay.setAttribute("aria-hidden", "false");
+    }
+  }
+
+  function closeDrawer() {
+    if (drawerOverlay) {
+      drawerOverlay.classList.remove("open");
+      drawerOverlay.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  if (burgerBtn) burgerBtn.addEventListener("click", openDrawer);
+  if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+  if (drawerOverlay) {
+    drawerOverlay.addEventListener("click", (e) => {
+      if (e.target === drawerOverlay) {
+        closeDrawer();
+      }
+    });
+  }
+
+  // Close Mobile menu drawer automatically when clicking any links inside it
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".mobile-sidebar-drawer .sidebar-item-link") || e.target.closest(".mobile-sidebar-drawer .logo")) {
+      closeDrawer();
+    }
+  });
+
+  // Hotkey navigation helper mapping '/' key to top bar quick search
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== document.getElementById("live-search-input")) {
+      e.preventDefault();
+      // Route immediately to Buttons Category listing page to let users perform searches
+      window.location.hash = "#category/buttons";
+      setTimeout(() => {
+        const input = document.getElementById("live-search-input");
+        if (input) input.focus();
+      }, 100);
+    }
+  });
+
+  // Top Search Trigger Action (Forces routing to buttons catalog category + opens search bar)
+  const topSearchBtn = document.getElementById("top-search-bar-trigger");
+  if (topSearchBtn) {
+    topSearchBtn.addEventListener("click", () => {
+      window.location.hash = "#category/buttons";
+      setTimeout(() => {
+        const input = document.getElementById("live-search-input");
+        if (input) input.focus();
+      }, 100);
+    });
+  }
+
+  // Modern Theme Switching mechanism utilizing LocalStorage
+  const themeToggleBtn = document.getElementById("theme-toggle-btn");
+
+  // Fetch Theme State
+  const localTheme = localStorage.getItem("modern-css-components-theme");
+  if (localTheme === "dark") {
+    state.theme = "dark";
+    document.documentElement.setAttribute("data-theme", "dark");
+    if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
+  } else {
+    state.theme = "light";
+    document.documentElement.setAttribute("data-theme", "light");
+    if (themeToggleBtn) themeToggleBtn.textContent = "🌙";
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      document.body.classList.add("dark-mode-smooth-transition");
+
+      if (state.theme === "light") {
+        state.theme = "dark";
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeToggleBtn.textContent = "☀️";
+        localStorage.setItem("modern-css-components-theme", "dark");
+      } else {
+        state.theme = "light";
+        document.documentElement.setAttribute("data-theme", "light");
+        themeToggleBtn.textContent = "🌙";
+        localStorage.setItem("modern-css-components-theme", "light");
+      }
+
+      setTimeout(() => {
+        document.body.classList.remove("dark-mode-smooth-transition");
+      }, 500);
+    });
+  }
+}
+
+// --- 11. App Bootstrapping Coordinator ---
+function initApp() {
+  // Render Sidebar Category menus
+  renderSidebars();
+
+  // Setup Global Core Listeners (Hamburger, search inputs, theme toggles)
+  setupGlobalUIListeners();
+
+  // Listen for hash route changes
+  window.addEventListener("hashchange", navigate);
+
+  // Parse direct landing hash to load initial layouts
+  navigate();
+}
+
+// Start Single Page Application on document DOM read completion
+document.addEventListener("DOMContentLoaded", initApp);
