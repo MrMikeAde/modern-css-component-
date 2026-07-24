@@ -211,8 +211,9 @@ Please read our [Contributing Guide](CONTRIBUTING.md) to understand our coding s
 ## 🗺️ Future Roadmap
 
 - **Phase 1 (Complete)**: Formulate the architectural repository blueprint, coding standards, and documentation templates.
-- **Phase 2 (In Progress)**: Design and build the baseline HTML/CSS codes for all 20 categories.
-- **Phase 3 (Planned)**: Release advanced Container Query showcases, native light/dark mode implementations, and an interactive web portal for seamless visual copying.
+- **Phase 2 (Complete)**: Design and build 80 high-fidelity, production-grade responsive CSS components across three core categories (Buttons, Cards, Forms).
+- **Phase 3 (v1.0.0 Release Ready)**: Built an interactive client-side Single Page Application (SPA), a beautiful global Command Palette / instant search tool (`Ctrl+K`), custom Mac-style sandbox previews, responsive testing tools, and fluid custom scrollbars.
+- **Phase 4 (Planned Future Expansion)**: Progressive rollout of remaining categories (alerts, modals, tabs, etc.) using native elements like `<dialog>` and `<details>`.
 
 Read more in our [Roadmap](ROADMAP.md).
 
