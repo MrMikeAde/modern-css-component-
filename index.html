@@ -29,6 +29,26 @@
 
   <!-- Global App Styles -->
   <link rel="stylesheet" href="assets/style.css">
+
+  <!-- JSON-LD Structured Metadata -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Modern CSS Components",
+    "url": "https://modern-css-components.netlify.app/",
+    "description": "Discover a premium open-source collection of 80 responsive, accessible, and beautifully crafted HTML5 and CSS3 components. Copy-paste buttons, cards, forms, and more without dependencies.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires HTML5 and CSS3 support.",
+    "license": "https://opensource.org/licenses/MIT",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 </head>
 <body class="full-width-layout">
 
@@ -126,6 +146,27 @@
         <ul class="sidebar-menu" id="mobile-sidebar-categories-list">
           <!-- Dynamic categories injected here -->
         </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Command Palette / Search Modal -->
+  <div class="search-modal-overlay" id="global-search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command Palette Search">
+    <div class="search-modal-container">
+      <div class="search-modal-header">
+        <span class="search-modal-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Type a component name, tag, or category (e.g. buttons)..." aria-label="Search all components and categories" autocomplete="off">
+        <button class="search-modal-close-btn" id="global-search-close-btn" aria-label="Close search">&times;</button>
+      </div>
+      <div class="search-modal-hints">
+        <span><kbd>↑↓</kbd> Navigate</span>
+        <span><kbd>Enter</kbd> Select</span>
+        <span><kbd>Esc</kbd> Close</span>
+      </div>
+      <div class="search-modal-body">
+        <div class="search-modal-results" id="global-search-results" role="listbox" aria-label="Search Results">
+          <!-- Live results injected here -->
+        </div>
       </div>
     </div>
   </div>
