@@ -1,0 +1,3 @@
+# Netlify Redirect Configuration for Single Page Applications
+# Fallback all traffic to index.html with 200 status to allow dynamic SPA hashes to function properly
+/*    /index.html   200
