@@ -554,170 +554,259 @@ const ViewRenderers = {
       `;
     }
 
-    // Build list of alternate related components inside this category
+    // Related Components recommendation algorithm (max 3, filtering active)
     const relatedList = (category.components || [])
       .filter(c => c.id !== component.id)
-      .slice(0, 3); // pick max 3 related elements
+      .slice(0, 3);
 
     let relatedCardsMarkup = "";
     if (relatedList.length > 0) {
       relatedCardsMarkup = relatedList.map(rc => `
-        <div class="component-card">
-          <div class="component-preview-thumb" style="height:120px;">
-            <iframe class="component-preview-thumb-iframe" src="components/${category.id}/${rc.id}/index.html" title="${rc.name} Thumbnail" loading="lazy"></iframe>
+        <a href="#component/${category.id}/${rc.id}" class="related-comp-card">
+          <div class="related-comp-thumb">
+            <iframe src="components/${category.id}/${rc.id}/index.html" title="${rc.name} Preview" loading="lazy"></iframe>
           </div>
-          <div class="component-card-content" style="padding:1rem;">
-            <h4 class="component-card-title" style="font-size:0.95rem; margin-bottom:0.25rem;">${rc.name}</h4>
-            <p class="component-card-desc" style="font-size:0.8rem; margin-bottom:0.75rem; line-height:1.4;">${rc.description}</p>
-            <a href="#component/${category.id}/${rc.id}" class="btn btn-secondary btn-card-action" style="padding:0.4rem; font-size:0.8rem;">Explore Component</a>
+          <div class="related-comp-info">
+            <h4>${rc.name}</h4>
           </div>
-        </div>
+        </a>
       `).join("");
     } else {
-      relatedCardsMarkup = `<p style="font-size:0.9rem; color:var(--color-text-muted);">None found.</p>`;
+      relatedCardsMarkup = `
+        <div class="playground-empty-state">
+          <span class="empty-state-icon">🧩</span>
+          <p>No related components found in this category.</p>
+        </div>
+      `;
     }
 
     return `
-      <div class="back-btn-wrapper" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <!-- Premium Navigation Breadcrumbs -->
-        <nav class="breadcrumbs" aria-label="Breadcrumbs Navigation" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
-          <a href="#" style="color: var(--color-text-muted); text-decoration: none; font-weight: 500; transition: color var(--transition-smooth);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">Home</a>
-          <span style="color: var(--color-text-light);">&gt;</span>
-          <a href="#category/${category.id}" style="color: var(--color-text-muted); text-decoration: none; font-weight: 500; transition: color var(--transition-smooth);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">${category.name}</a>
-          <span style="color: var(--color-text-light);">&gt;</span>
-          <span style="color: var(--color-text-dark); font-weight: 600;">${component.name}</span>
-        </nav>
-        <a href="#category/${category.id}" class="back-btn" aria-label="Back to ${category.name} category list" style="text-decoration: none; font-size: 0.85rem; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 0.25rem;">
-          &larr; Back to ${category.name}
-        </a>
-      </div>
+      <!-- Breadcrumbs navigation -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs" style="margin-bottom: 1rem;">
+        <a href="#">Home</a>
+        <span class="sep">&gt;</span>
+        <a href="#category/${category.id}">${category.name}</a>
+        <span class="sep">&gt;</span>
+        <span class="current">${component.name}</span>
+      </nav>
 
-      <div class="component-detail-header" style="margin-bottom: 2rem;">
-        <div class="detail-meta-row" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-          <span class="diff-badge ${component.difficulty.toLowerCase()}">${component.difficulty}</span>
-          <span style="font-size: 0.8rem; color: var(--color-text-light); font-family: var(--font-family-mono);">components/${category.id}/${component.id}/</span>
+      <!-- Redesigned Component Header Block -->
+      <header class="playground-header">
+        <div class="playground-header-main">
+          <h1 class="playground-title">${component.name}</h1>
+          <p class="playground-desc">${component.description}</p>
+          <div class="playground-meta">
+            <div>
+              <span class="meta-label">Category:</span>
+              <a href="#category/${category.id}" class="meta-link">${category.name}</a>
+            </div>
+            <div>
+              <span class="meta-label">Difficulty:</span>
+              <span class="diff-badge ${component.difficulty.toLowerCase()}">${component.difficulty}</span>
+            </div>
+            <div class="playground-tags">
+              ${component.tags.map(t => `<span class="playground-tag-badge">${t}</span>`).join("")}
+            </div>
+          </div>
         </div>
-        <h1 class="detail-title" style="font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem;">${component.name}</h1>
-        <p class="detail-desc" style="font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.5; max-width: 800px;">${component.description}</p>
-      </div>
 
-      <!-- Live Interactive Sandboxed Showcase (Mock Browser Container) -->
-      <section class="showcase-block" aria-labelledby="live-preview-title" style="border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg-white); box-shadow: var(--shadow-lg); margin-bottom: 3rem;">
-        <div class="showcase-toolbar" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: var(--color-bg-light); border-bottom: 1px solid var(--color-border); gap: 1rem;">
-          <!-- Left: Mac-style Traffic Lights -->
-          <div class="mock-browser-dots" style="display: flex; gap: 0.5rem; align-items: center;">
-            <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
-            <span style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
-            <span style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+        <!-- Actions Toolbar -->
+        <div class="playground-toolbar">
+          <button class="play-btn play-btn-primary" id="btn-copy-html-trigger" data-type="html">
+            📋 Copy HTML
+          </button>
+          <button class="play-btn play-btn-primary" id="btn-copy-css-trigger" data-type="css">
+            🎨 Copy CSS
+          </button>
+          <button class="play-btn play-btn-secondary" id="btn-download-trigger">
+            📥 Download
+          </button>
+          <button class="play-btn play-btn-secondary" id="btn-fullscreen-trigger">
+            🌐 Open Fullscreen
+          </button>
+          <button class="play-btn play-btn-danger" id="btn-reset-trigger">
+            🔄 Reset Demo
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Workspace: Interactive Preview (Left) + Customisation Panel (Right) -->
+      <section class="playground-workspace">
+
+        <!-- Live Preview Sandbox Panel -->
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <!-- Mock browser window controls -->
+            <div class="window-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+
+            <!-- Responsive selector controls -->
+            <div class="responsive-selector">
+              <button class="resp-btn active" data-size="desktop" id="resp-desktop" title="Desktop Viewport">Desktop</button>
+              <button class="resp-btn" data-size="tablet" id="resp-tablet" title="Tablet Viewport">Tablet</button>
+              <button class="resp-btn" data-size="mobile" id="resp-mobile" title="Mobile Viewport">Mobile</button>
+            </div>
+
+            <!-- Theme preview toggle controls -->
+            <div class="theme-selector">
+              <button class="theme-btn active" data-theme="light" id="theme-light">Light</button>
+              <button class="theme-btn" data-theme="dark" id="theme-dark">Dark</button>
+            </div>
           </div>
-          <!-- Center: Mock URL Bar -->
-          <div class="mock-browser-url-bar" style="flex: 1; max-width: 420px; background: var(--color-bg-white); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.35rem 0.75rem; text-align: center; font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-family-mono); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; user-select: all;" title="Mock preview location url">
-            localhost:3000/components/${category.id}/${component.id}
-          </div>
-          <!-- Right: Responsive Control Sizing Switchers -->
-          <div class="showcase-toolbar-controls" style="display: flex; align-items: center; gap: 0.35rem;">
-            <button class="icon-btn btn-sandbox-control" id="control-sandbox-mobile" title="Responsive mobile layout sizing (375px)" aria-label="Resize viewport preview to Mobile (375px)" style="width: 32px; height: 32px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">📱</button>
-            <button class="icon-btn btn-sandbox-control" id="control-sandbox-tablet" title="Responsive tablet layout sizing (768px)" aria-label="Resize viewport preview to Tablet (768px)" style="width: 32px; height: 32px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">📟</button>
-            <button class="icon-btn btn-sandbox-control" id="control-sandbox-desktop" title="Responsive full width sizing" aria-label="Resize viewport preview to Full width desktop" style="width: 32px; height: 32px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">🖥️</button>
+
+          <div class="preview-card-body" id="sandbox-preview-container">
+            <span class="thumb-loader-spinner" id="sandbox-loader-icon">🌀</span>
+            <iframe class="playground-iframe" id="component-live-iframe" src="components/${category.id}/${component.id}/index.html" title="${component.name} Live Sandbox"></iframe>
           </div>
         </div>
-        <div class="showcase-preview-container" id="sandbox-iframe-wrapper" style="padding: 2rem; background: var(--color-bg-light); border-bottom: none; min-height: 250px; display: flex; align-items: center; justify-content: center; position: relative;">
-          <span class="thumb-loader-spinner" id="sandbox-loader-icon" style="position: absolute; font-size: 1.5rem; color: var(--color-text-light);">🌀</span>
-          <iframe class="showcase-iframe" id="component-live-iframe" src="components/${category.id}/${component.id}/index.html" title="${component.name} Live Sandbox Interactive View" style="width: 100%; height: 320px; border: none; background: transparent;"></iframe>
+
+        <!-- Customisation variables panel card -->
+        <div class="customizer-card">
+          <div class="customizer-header">
+            <span class="customizer-icon">🔧</span>
+            <h3>Customise Variables</h3>
+          </div>
+          <div class="customizer-body" id="customizer-vars-panel">
+            <div class="customizer-loading">Parsing stylesheet variables...</div>
+          </div>
         </div>
+
       </section>
 
-      <!-- Source Code viewer panels -->
-      <section class="code-viewer-grid" aria-label="Source Code Sections">
+      <!-- Source Code view split sections -->
+      <section class="code-viewer-grid" aria-label="Source Code">
 
-        <!-- HTML Code view -->
+        <!-- HTML Code Viewer Panel -->
         <div class="code-viewer-card">
           <div class="code-viewer-header">
-            <span class="code-viewer-lang">📋 HTML Markup</span>
-            <button class="btn-copy-code" id="btn-copy-html-trigger" data-type="html">
-              <span>📋</span> Copy Code
+            <span class="code-viewer-lang">📄 Semantic Markup (HTML)</span>
+            <button class="btn-copy-code" id="btn-copy-html-inner" data-type="html">
+              📋 Copy HTML
             </button>
           </div>
-          <pre class="code-block-pre"><code id="code-html-target" class="code-block-lines">Loading source markup code...</code></pre>
+          <pre class="code-block-pre"><code id="code-html-target" class="code-block-lines">Loading raw source markup code...</code></pre>
         </div>
 
-        <!-- CSS Code view -->
+        <!-- CSS Stylesheet Viewer Panel -->
         <div class="code-viewer-card">
           <div class="code-viewer-header">
-            <span class="code-viewer-lang">🎨 CSS Layout Styles</span>
-            <button class="btn-copy-code" id="btn-copy-css-trigger" data-type="css">
-              <span>🎨</span> Copy Code
+            <span class="code-viewer-lang">🎨 Modular Design (CSS)</span>
+            <button class="btn-copy-code" id="btn-copy-css-inner" data-type="css">
+              🎨 Copy CSS
             </button>
           </div>
-          <pre class="code-block-pre"><code id="code-css-target" class="code-block-lines">Loading CSS stylesheet classes...</code></pre>
+          <pre class="code-block-pre"><code id="code-css-target" class="code-block-lines">Loading clean layout style definitions...</code></pre>
         </div>
 
       </section>
 
-      <!-- Accessibility, Browser Support, and Customization Guides -->
-      <div class="sub-docs-grid">
+      <!-- Accessibility, Browser Support, and Related components layout grid -->
+      <section class="playground-info-grid" aria-label="Playground Features Information">
 
-        <div class="sub-docs-card">
-          <h3>♿ Accessibility Notes</h3>
-          <p>Our structures prioritize strict semantic keyboard accessibility and color contrast rules:</p>
-          <ul class="sub-docs-list">
-            <li><strong>Keyboard Tabs Focus:</strong> Standard elements have full keyboard tab loops and high contrast outer outlines enabled.</li>
-            <li><strong>Visual Focus Outline:</strong> This component matches a minimum of 4.5:1 text color contrast requirements.</li>
-            <li><strong>ARIA Landmarks:</strong> Standard container patterns wrap semantic roles or label tags automatically.</li>
-          </ul>
+        <!-- Accessibility Card -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <span class="info-icon">♿</span>
+            <h3>Accessibility (a11y)</h3>
+          </div>
+          <div class="info-card-body">
+            <ul class="a11y-checklist">
+              <li>
+                <span class="check-icon">✓</span>
+                <div class="check-content">
+                  <strong>Keyboard Accessible</strong>
+                  <p>Equipped with native focus rings and interactive keyboard focus traps.</p>
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div class="check-content">
+                  <strong>WCAG Friendly</strong>
+                  <p>Satisfies contrast ratio expectations and responsive scalability demands.</p>
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div class="check-content">
+                  <strong>Semantic HTML</strong>
+                  <p>Built with proper clean, structured, and descriptive elements.</p>
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div class="check-content">
+                  <strong>ARIA Compliant</strong>
+                  <p>Uses appropriate status landmarks and screen reader roles when required.</p>
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div class="check-content">
+                  <strong>Reduced Motion Support</strong>
+                  <p>Applies media query transitions to respects browser animations restrictions.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="sub-docs-card">
-          <h3>🔧 Customization Guide</h3>
-          <p>Easily adapt variable styles inside your local application directory:</p>
-          <ul class="sub-docs-list">
-            <li>Change variables declared under <code>:root</code> selectors to change branding colors.</li>
-            <li>Overrule standard borders or container gap properties inside your parent templates.</li>
-            <li>Extend hover transition keys or duration values to fit smooth system presets.</li>
-          </ul>
-        </div>
-
-        <div class="sub-docs-card">
-          <h3>🌐 Browser Support</h3>
-          <p>Tested and fully verified against modern evergreen layout rendering browsers:</p>
-          <div class="support-badges-grid">
-            <div class="support-badge">
-              <span class="support-icon">🌐</span>
-              <span style="font-size:0.7rem; font-weight:700; display:block;">Chrome</span>
-              <span class="support-val">Stable</span>
-            </div>
-            <div class="support-badge">
-              <span class="support-icon">🦊</span>
-              <span style="font-size:0.7rem; font-weight:700; display:block;">Firefox</span>
-              <span class="support-val">Stable</span>
-            </div>
-            <div class="support-badge">
-              <span class="support-icon">🧭</span>
-              <span style="font-size:0.7rem; font-weight:700; display:block;">Safari</span>
-              <span class="support-val">15+</span>
-            </div>
-            <div class="support-badge">
-              <span class="support-icon">🎛️</span>
-              <span style="font-size:0.7rem; font-weight:700; display:block;">Edge</span>
-              <span class="support-val">Stable</span>
+        <!-- Browser Support Card -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <span class="info-icon">🌐</span>
+            <h3>Browser Support</h3>
+          </div>
+          <div class="info-card-body">
+            <p class="support-intro">Fully tested and guaranteed to render beautifully across all standard evergreen browsers.</p>
+            <div class="playground-support-grid">
+              <div class="support-item">
+                <span class="browser-icon">🌐</span>
+                <div class="browser-meta">
+                  <strong>Chrome</strong>
+                  <span class="browser-status">Supported (Stable)</span>
+                </div>
+              </div>
+              <div class="support-item">
+                <span class="browser-icon">🦊</span>
+                <div class="browser-meta">
+                  <strong>Firefox</strong>
+                  <span class="browser-status">Supported (Stable)</span>
+                </div>
+              </div>
+              <div class="support-item">
+                <span class="browser-icon">🧭</span>
+                <div class="browser-meta">
+                  <strong>Safari</strong>
+                  <span class="browser-status">Supported (15+)</span>
+                </div>
+              </div>
+              <div class="support-item">
+                <span class="browser-icon">🎛️</span>
+                <div class="browser-meta">
+                  <strong>Edge</strong>
+                  <span class="browser-status">Supported (Stable)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="sub-docs-card">
-          <h3>📚 Learn More from README</h3>
-          <p>Every individual component holds an in-depth instructions guide covering setup and code specifications.</p>
-          <pre class="code-block-pre" id="code-readme-target" style="font-size:0.8rem; background:var(--color-bg-light); border-radius:var(--radius-md); padding:0.75rem; color:var(--color-text-muted); max-height:180px; overflow-y:auto; border:1px solid var(--color-border);">Fetching instructions README documentation...</pre>
+        <!-- Related Components Card -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <span class="info-icon">🧩</span>
+            <h3>Related Components</h3>
+          </div>
+          <div class="info-card-body">
+            <div class="related-comps-list">
+              ${relatedCardsMarkup}
+            </div>
+          </div>
         </div>
 
-      </div>
-
-      <!-- Related components grid -->
-      <section class="related-components-section" aria-labelledby="related-comps-title">
-        <h3 class="related-components-title" id="related-comps-title">Related Components inside ${category.name}</h3>
-        <div class="components-card-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;">
-          ${relatedCardsMarkup}
-        </div>
       </section>
     `;
   }
@@ -761,11 +850,195 @@ function renderSidebars() {
 // --- 5. Code Loading & Rendering System ---
 let loadedHTMLSource = "";
 let loadedCSSSource = "";
+let parsedVariables = {}; // Stores default values for variables: { name: { value, type } }
+
+function parseCSSVariables(cssText) {
+  const variables = {};
+  // Match variables inside :root or other rules
+  const varRegex = /(--[a-zA-Z0-9\-_]+)\s*:\s*([^;}\n]+)/g;
+  let match;
+  while ((match = varRegex.exec(cssText)) !== null) {
+    const name = match[1].trim();
+    const value = match[2].trim();
+
+    // Categorize type (color vs dimension/spacing vs generic)
+    let type = "text";
+    if (value.startsWith("#") || value.startsWith("rgb") || value.startsWith("hsl")) {
+      type = "color";
+    } else if (value.endsWith("px") || value.endsWith("rem") || value.endsWith("em") || value.endsWith("%")) {
+      type = "dimension";
+    }
+
+    variables[name] = { value, type };
+  }
+  return variables;
+}
+
+function renderCustomizerPanel() {
+  const panel = document.getElementById("customizer-vars-panel");
+  if (!panel) return;
+
+  const varNames = Object.keys(parsedVariables);
+  if (varNames.length === 0) {
+    panel.innerHTML = `
+      <div class="playground-empty-state">
+        <span class="empty-state-icon">🔧</span>
+        <p>No editable CSS variables found in this component.</p>
+      </div>
+    `;
+    return;
+  }
+
+  let html = "";
+  varNames.forEach(name => {
+    const item = parsedVariables[name];
+    const cleanName = name.replace("--", "").replace(/\-/g, " ");
+
+    if (item.type === "color") {
+      html += `
+        <div class="customizer-group">
+          <label class="customizer-label" for="var-${name}">${cleanName}</label>
+          <div class="customizer-control-wrapper">
+            <input type="color" class="customizer-color-picker" id="color-picker-${name}" data-var="${name}" value="${convertToHex(item.value)}">
+            <input type="text" class="customizer-input-text var-input" id="var-${name}" data-var="${name}" value="${item.value}">
+          </div>
+        </div>
+      `;
+    } else if (item.type === "dimension") {
+      // Split numeric value and unit
+      const numMatch = item.value.match(/^([\d\.]+)([a-zA-Z%]+)$/);
+      if (numMatch) {
+        const numVal = parseFloat(numMatch[1]);
+        const unit = numMatch[2];
+        const isPx = unit === "px";
+        const maxVal = isPx ? 100 : 5;
+        const stepVal = isPx ? 1 : 0.05;
+
+        html += `
+          <div class="customizer-group">
+            <label class="customizer-label" for="var-${name}">${cleanName}</label>
+            <div class="customizer-slider-wrapper">
+              <input type="range" class="customizer-input-range var-slider" id="slider-${name}" data-var="${name}" data-unit="${unit}" min="0" max="${maxVal}" step="${stepVal}" value="${numVal}">
+              <input type="text" class="customizer-input-text var-input" id="var-${name}" data-var="${name}" value="${item.value}" style="max-width: 80px;">
+            </div>
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="customizer-group">
+            <label class="customizer-label" for="var-${name}">${cleanName}</label>
+            <input type="text" class="customizer-input-text var-input" id="var-${name}" data-var="${name}" value="${item.value}">
+          </div>
+        `;
+      }
+    } else {
+      html += `
+        <div class="customizer-group">
+          <label class="customizer-label" for="var-${name}">${cleanName}</label>
+          <input type="text" class="customizer-input-text var-input" id="var-${name}" data-var="${name}" value="${item.value}">
+        </div>
+      `;
+    }
+  });
+
+  panel.innerHTML = html;
+
+  // Bind active customizer input events
+  attachCustomizerEvents();
+}
+
+// Convert common CSS colors to Hex for HTML5 <input type="color"> compatibility
+function convertToHex(colorStr) {
+  colorStr = colorStr.trim();
+  if (colorStr.startsWith("#")) {
+    if (colorStr.length === 4) {
+      return "#" + colorStr[1] + colorStr[1] + colorStr[2] + colorStr[2] + colorStr[3] + colorStr[3];
+    }
+    return colorStr;
+  }
+  // Fallback map for common words
+  const colors = {
+    "white": "#ffffff", "black": "#000000", "transparent": "#ffffff"
+  };
+  return colors[colorStr.toLowerCase()] || "#6366f1";
+}
+
+function updateIframeVariable(name, value) {
+  const iframe = document.getElementById("component-live-iframe");
+  if (!iframe || !iframe.contentWindow) return;
+
+  try {
+    iframe.contentWindow.document.documentElement.style.setProperty(name, value);
+    iframe.contentWindow.document.body.style.setProperty(name, value);
+    // Find matching classes and set properties if nested
+    const allElements = iframe.contentWindow.document.querySelectorAll("*");
+    allElements.forEach(el => {
+      el.style.setProperty(name, value);
+    });
+  } catch (e) {
+    // Cross-origin issues fallback (won't happen locally)
+  }
+}
+
+function attachCustomizerEvents() {
+  const textInputs = document.querySelectorAll(".var-input");
+  textInputs.forEach(input => {
+    input.addEventListener("input", (e) => {
+      const name = e.target.getAttribute("data-var");
+      const val = e.target.value;
+      updateIframeVariable(name, val);
+
+      // Sync color picker or range slider if exists
+      const picker = document.getElementById(`color-picker-${name}`);
+      if (picker) picker.value = convertToHex(val);
+
+      const slider = document.getElementById(`slider-${name}`);
+      if (slider) {
+        const numMatch = val.match(/^([\d\.]+)/);
+        if (numMatch) slider.value = parseFloat(numMatch[1]);
+      }
+    });
+  });
+
+  const colorPickers = document.querySelectorAll(".customizer-color-picker");
+  colorPickers.forEach(picker => {
+    picker.addEventListener("input", (e) => {
+      const name = e.target.getAttribute("data-var");
+      const val = e.target.value;
+      updateIframeVariable(name, val);
+
+      const txt = document.getElementById(`var-${name}`);
+      if (txt) txt.value = val;
+    });
+  });
+
+  const sliders = document.querySelectorAll(".var-slider");
+  sliders.forEach(slider => {
+    slider.addEventListener("input", (e) => {
+      const name = e.target.getAttribute("data-var");
+      const unit = e.target.getAttribute("data-unit");
+      const val = e.target.value + unit;
+      updateIframeVariable(name, val);
+
+      const txt = document.getElementById(`var-${name}`);
+      if (txt) txt.value = val;
+    });
+  });
+}
+
+function resetCustomizerDemo() {
+  // Revert all variables to default parsed values
+  Object.keys(parsedVariables).forEach(name => {
+    const item = parsedVariables[name];
+    updateIframeVariable(name, item.value);
+  });
+  renderCustomizerPanel();
+  showToast("Demo variables restored successfully!");
+}
 
 async function loadComponentSourceCode() {
   const htmlTarget = document.getElementById("code-html-target");
   const cssTarget = document.getElementById("code-css-target");
-  const readmeTarget = document.getElementById("code-readme-target");
 
   if (!htmlTarget || !cssTarget) return;
 
@@ -774,7 +1047,6 @@ async function loadComponentSourceCode() {
 
   const htmlPath = `components/${categoryId}/${componentId}/index.html`;
   const cssPath = `components/${categoryId}/${componentId}/style.css`;
-  const readmePath = `components/${categoryId}/${componentId}/README.md`;
 
   // Fetch HTML Code
   try {
@@ -795,19 +1067,15 @@ async function loadComponentSourceCode() {
     const raw = await res.text();
     loadedCSSSource = raw;
     cssTarget.innerHTML = runCSSTokenizer(raw);
+
+    // Parse variables for customizer panel
+    parsedVariables = parseCSSVariables(raw);
+    renderCustomizerPanel();
   } catch (err) {
     cssTarget.textContent = "Failed to load CSS stylesheet classes.";
     loadedCSSSource = "";
-  }
-
-  // Fetch README Docs
-  try {
-    const res = await fetch(readmePath);
-    if (!res.ok) throw new Error();
-    const raw = await res.text();
-    readmeTarget.textContent = raw;
-  } catch (err) {
-    readmeTarget.textContent = "Failed to fetch details from README.md instructions.";
+    parsedVariables = {};
+    renderCustomizerPanel();
   }
 }
 
@@ -831,7 +1099,7 @@ function showToast(message) {
   }, 2500);
 }
 
-function handleCopyAction(type) {
+function handleCopyAction(type, buttonEl) {
   const codeToCopy = type === "html" ? loadedHTMLSource : loadedCSSSource;
 
   if (!codeToCopy) {
@@ -839,18 +1107,38 @@ function handleCopyAction(type) {
     return;
   }
 
+  const originalHtml = buttonEl ? buttonEl.innerHTML : "";
+
+  function animateButtonSuccess() {
+    if (!buttonEl) return;
+
+    // Set success text with smooth visual animation feedback
+    buttonEl.innerHTML = `✓ ${type.toUpperCase()} Copied`;
+    buttonEl.style.transform = "scale(1.05)";
+    buttonEl.style.backgroundColor = "var(--color-success)";
+    buttonEl.style.color = "white";
+
+    setTimeout(() => {
+      buttonEl.innerHTML = originalHtml;
+      buttonEl.style.transform = "";
+      buttonEl.style.backgroundColor = "";
+      buttonEl.style.color = "";
+    }, 2000);
+  }
+
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(codeToCopy).then(() => {
       showToast(`Successfully copied ${type.toUpperCase()} block!`);
+      animateButtonSuccess();
     }).catch(() => {
-      fallbackCopyTextToClipboard(codeToCopy, type);
+      fallbackCopyTextToClipboard(codeToCopy, type, animateButtonSuccess);
     });
   } else {
-    fallbackCopyTextToClipboard(codeToCopy, type);
+    fallbackCopyTextToClipboard(codeToCopy, type, animateButtonSuccess);
   }
 }
 
-function fallbackCopyTextToClipboard(text, type) {
+function fallbackCopyTextToClipboard(text, type, successCallback) {
   const textArea = document.createElement("textarea");
   textArea.value = text;
 
@@ -869,6 +1157,7 @@ function fallbackCopyTextToClipboard(text, type) {
     const successful = document.execCommand("copy");
     if (successful) {
       showToast(`Successfully copied ${type.toUpperCase()} block!`);
+      if (successCallback) successCallback();
     } else {
       showToast("Failed to write clipboard data.");
     }
@@ -879,26 +1168,118 @@ function fallbackCopyTextToClipboard(text, type) {
   document.body.removeChild(textArea);
 }
 
+// Client-side file triggers downloader
+function triggerComponentDownload() {
+  const categoryId = state.activeCategory;
+  const componentId = state.activeComponent;
+
+  if (!categoryId || !componentId) return;
+
+  const htmlFilename = `${componentId}.html`;
+  const cssFilename = `${componentId}.css`;
+
+  // Helper to trigger save dialogs
+  function downloadBlob(content, filename, contentType) {
+    const blob = new Blob([content], { type: contentType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
+  }
+
+  if (loadedHTMLSource) {
+    downloadBlob(loadedHTMLSource, htmlFilename, "text/html");
+  }
+  if (loadedCSSSource) {
+    downloadBlob(loadedCSSSource, cssFilename, "text/css");
+  }
+
+  showToast(`Initiated download for ${componentId} templates!`);
+}
+
+function triggerFullscreenSandbox() {
+  const categoryId = state.activeCategory;
+  const componentId = state.activeComponent;
+
+  if (!categoryId || !componentId) return;
+
+  const fullUrl = `components/${categoryId}/${componentId}/index.html`;
+  window.open(fullUrl, "_blank");
+}
+
 // --- 7. Sandbox controls ---
 function updateSandboxResponsiveWidth(size) {
-  const wrapper = document.getElementById("sandbox-iframe-wrapper");
+  const wrapper = document.getElementById("sandbox-preview-container");
   const iframe = document.getElementById("component-live-iframe");
 
   if (!wrapper || !iframe) return;
 
+  // Visual cues update
+  const buttons = document.querySelectorAll(".resp-btn");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("data-size") === size) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
   if (size === "mobile") {
-    wrapper.style.width = "375px";
-    wrapper.style.margin = "0 auto";
-    iframe.style.width = "375px";
+    iframe.style.maxWidth = "375px";
   } else if (size === "tablet") {
-    wrapper.style.width = "768px";
-    wrapper.style.margin = "0 auto";
-    iframe.style.width = "768px";
+    iframe.style.maxWidth = "768px";
   } else {
     // Desktop View
-    wrapper.style.width = "100%";
-    wrapper.style.margin = "0";
-    iframe.style.width = "100%";
+    iframe.style.maxWidth = "100%";
+  }
+}
+
+function updateSandboxTheme(theme) {
+  const container = document.getElementById("sandbox-preview-container");
+  const iframe = document.getElementById("component-live-iframe");
+
+  if (!container) return;
+
+  // Visual buttons highlight
+  const buttons = document.querySelectorAll(".theme-btn");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("data-theme") === theme) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  if (theme === "dark") {
+    container.style.backgroundColor = "#0b111e";
+    container.style.backgroundImage = "radial-gradient(#1e293b 1px, transparent 1px)";
+    if (iframe && iframe.contentWindow) {
+      try {
+        iframe.contentWindow.document.documentElement.setAttribute("data-theme", "dark");
+        iframe.contentWindow.document.body.style.backgroundColor = "#0b111e";
+        iframe.contentWindow.document.body.style.color = "#f8fafc";
+      } catch (e) {
+        // Handle cross-origin issues safely (they shouldn't happen on same-origin http server)
+      }
+    }
+  } else {
+    container.style.backgroundColor = "#f8fafc";
+    container.style.backgroundImage = "radial-gradient(var(--color-border) 1px, transparent 1px)";
+    if (iframe && iframe.contentWindow) {
+      try {
+        iframe.contentWindow.document.documentElement.setAttribute("data-theme", "light");
+        iframe.contentWindow.document.body.style.backgroundColor = "#fafafa";
+        iframe.contentWindow.document.body.style.color = "#0f172a";
+      } catch (e) {
+        // Safely fail
+      }
+    }
   }
 }
 
@@ -1003,20 +1384,43 @@ function attachViewEventListeners() {
   }
 
   // Sandbox Toolbar controls triggers (Mobile/Tablet/Desktop resize sandboxes)
-  const btnMobile = document.getElementById("control-sandbox-mobile");
-  const btnTablet = document.getElementById("control-sandbox-tablet");
-  const btnDesktop = document.getElementById("control-sandbox-desktop");
+  const btnMobile = document.getElementById("resp-mobile");
+  const btnTablet = document.getElementById("resp-tablet");
+  const btnDesktop = document.getElementById("resp-desktop");
 
   if (btnMobile) btnMobile.addEventListener("click", () => updateSandboxResponsiveWidth("mobile"));
   if (btnTablet) btnTablet.addEventListener("click", () => updateSandboxResponsiveWidth("tablet"));
   if (btnDesktop) btnDesktop.addEventListener("click", () => updateSandboxResponsiveWidth("desktop"));
 
+  // Theme selector triggers
+  const btnLight = document.getElementById("theme-light");
+  const btnDark = document.getElementById("theme-dark");
+
+  if (btnLight) btnLight.addEventListener("click", () => updateSandboxTheme("light"));
+  if (btnDark) btnDark.addEventListener("click", () => updateSandboxTheme("dark"));
+
+  // Reset Demo action trigger
+  const btnReset = document.getElementById("btn-reset-trigger");
+  if (btnReset) btnReset.addEventListener("click", resetCustomizerDemo);
+
+  // Download action trigger
+  const btnDownload = document.getElementById("btn-download-trigger");
+  if (btnDownload) btnDownload.addEventListener("click", triggerComponentDownload);
+
+  // Fullscreen action trigger
+  const btnFullscreen = document.getElementById("btn-fullscreen-trigger");
+  if (btnFullscreen) btnFullscreen.addEventListener("click", triggerFullscreenSandbox);
+
   // Source Clipboard actions
   const copyHtmlBtn = document.getElementById("btn-copy-html-trigger");
   const copyCssBtn = document.getElementById("btn-copy-css-trigger");
+  const copyHtmlInnerBtn = document.getElementById("btn-copy-html-inner");
+  const copyCssInnerBtn = document.getElementById("btn-copy-css-inner");
 
-  if (copyHtmlBtn) copyHtmlBtn.addEventListener("click", () => handleCopyAction("html"));
-  if (copyCssBtn) copyCssBtn.addEventListener("click", () => handleCopyAction("css"));
+  if (copyHtmlBtn) copyHtmlBtn.addEventListener("click", () => handleCopyAction("html", copyHtmlBtn));
+  if (copyCssBtn) copyCssBtn.addEventListener("click", () => handleCopyAction("css", copyCssBtn));
+  if (copyHtmlInnerBtn) copyHtmlInnerBtn.addEventListener("click", () => handleCopyAction("html", copyHtmlInnerBtn));
+  if (copyCssInnerBtn) copyCssInnerBtn.addEventListener("click", () => handleCopyAction("css", copyCssInnerBtn));
 }
 
 // Perform lightning-quick re-render of category cards grid on filter changes
